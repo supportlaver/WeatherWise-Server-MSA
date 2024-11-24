@@ -5,3 +5,5 @@ include 'created-mission-service'
 include 'mission-service'
 include 'user-service'
 include 'chatting-service'
+include 'common-service'
+

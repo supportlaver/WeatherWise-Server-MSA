@@ -1,4 +1,4 @@
-package com.example.createdmissionservice.domain;
+package com.idle.createdmissionservice.domain;
 
 import com.idle.weather.global.exception.BaseException;
 import com.idle.weather.global.exception.ErrorCode;

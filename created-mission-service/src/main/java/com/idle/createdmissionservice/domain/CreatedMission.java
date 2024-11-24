@@ -1,4 +1,4 @@
-package com.example.createdmissionservice.domain;
+package com.idle.createdmissionservice.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

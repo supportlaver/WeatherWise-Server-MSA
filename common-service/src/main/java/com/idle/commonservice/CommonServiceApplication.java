@@ -1,13 +1,13 @@
-package com.example.createdmissionservice;
+package com.idle.commonservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CreatedMissionServiceApplication {
+public class CommonServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CreatedMissionServiceApplication.class, args);
+        SpringApplication.run(CommonServiceApplication.class, args);
     }
 
 }

@@ -1,6 +1,6 @@
-package com.example.createdmissionservice.domain;
+package com.idle.createdmissionservice.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,12 +10,9 @@ import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
-@Entity
-@Builder
+@Embeddable @Builder
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PRIVATE)
-public class Mission {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mission_id")
-    private Long id;
+public class Challenger {
+    private Long userId;
 }
