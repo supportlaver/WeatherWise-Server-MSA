@@ -1,8 +1,7 @@
 package com.idle.userservice.domain;
-
-import com.idle.weather.common.jpa.PointConverter;
-import com.idle.weather.common.model.Point;
-import com.idle.weather.global.base.BaseEntity;
+import com.idle.commonservice.base.BaseEntity;
+import com.idle.commonservice.jpa.PointConverter;
+import com.idle.commonservice.model.Point;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;

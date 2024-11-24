@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+    implementation project(path: ':common-service')
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'

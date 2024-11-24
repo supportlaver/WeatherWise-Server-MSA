@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/auth-service/WeatherWise-Server-MSA.auth-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auth-service/WeatherWise-Server-MSA.auth-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common-service/WeatherWise-Server-MSA.common-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common-service/WeatherWise-Server-MSA.common-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service/WeatherWise-Server-MSA.user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service/WeatherWise-Server-MSA.user-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chatting-service.iml" filepath="$PROJECT_DIR$/chatting-service.iml" />
     </modules>
   </component>
 </project>

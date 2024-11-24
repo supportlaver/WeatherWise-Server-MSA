@@ -9,6 +9,7 @@
         </processorPath>
         <module name="WeatherWise-Server-MSA.board-service.main" />
         <module name="WeatherWise-Server-MSA.auth-service.main" />
+        <module name="WeatherWise-Server-MSA.common-service.main" />
         <module name="WeatherWise-Server-MSA.mission-service.main" />
         <module name="WeatherWise-Server-MSA.user-service.main" />
         <module name="WeatherWise-Server-MSA.created-mission-service.main" />
@@ -18,6 +19,8 @@
       <module name="WeatherWise-Server-MSA.buildSrc" target="21" />
       <module name="WeatherWise-Server-MSA.buildSrc.main" target="21" />
       <module name="WeatherWise-Server-MSA.buildSrc.test" target="21" />
+      <module name="WeatherWise-Server-MSA.weather-wise-common.main" target="21" />
+      <module name="WeatherWise-Server-MSA.weather-wise-common.test" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>
