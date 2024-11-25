@@ -1,11 +1,9 @@
-package com.idle.userservice.presentation.dto.auth.response;
+package com.idle.userservice.application.dto.response;
 
 import com.idle.commonservice.auth.EProvider;
 import com.idle.commonservice.auth.ERole;
 import com.idle.userservice.domain.PersonalWeatherTraits;
 import com.idle.userservice.domain.User;
-import com.idle.userservice.domain.UserRepository;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

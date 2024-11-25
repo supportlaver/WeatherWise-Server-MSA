@@ -1,10 +1,9 @@
 package com.idle.userservice.presentation;
 
 import com.idle.commonservice.auth.EProvider;
-import com.idle.commonservice.base.BaseResponse;
 import com.idle.userservice.application.UserAuthService;
-import com.idle.userservice.presentation.dto.auth.request.UpdateUserRefreshToken;
-import com.idle.userservice.presentation.dto.auth.response.UserSecurityFormDto;
+import com.idle.userservice.application.dto.request.UpdateUserRefreshToken;
+import com.idle.userservice.application.dto.request.UserSecurityFormDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

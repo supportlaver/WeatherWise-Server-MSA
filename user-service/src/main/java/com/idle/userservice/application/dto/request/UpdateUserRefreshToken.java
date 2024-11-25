@@ -1,4 +1,4 @@
-package com.idle.userservice.presentation.dto.auth.request;
+package com.idle.userservice.application.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

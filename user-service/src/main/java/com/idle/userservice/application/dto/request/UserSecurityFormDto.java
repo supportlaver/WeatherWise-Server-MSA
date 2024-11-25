@@ -1,7 +1,6 @@
-package com.idle.userservice.presentation.dto.auth.response;
+package com.idle.userservice.application.dto.request;
 
 import com.idle.commonservice.auth.ERole;
-import com.idle.userservice.domain.Password;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +13,7 @@ public class UserSecurityFormDto implements UserSecurityForm {
     private String password;
     private ERole role;
 
-
-/*    public static UserSecurityForm toSecurityForm(UserSecurityFormDto dto) {
+    public static UserSecurityForm toSecurityForm(UserSecurityFormDto dto) {
         return new UserSecurityForm() {
             @Override
             public Long getId() {
@@ -32,5 +30,5 @@ public class UserSecurityFormDto implements UserSecurityForm {
                 return dto.getRole();
             }
         };
-    }*/
+    }
 }

@@ -4,7 +4,6 @@ import com.idle.commonservice.auth.ERole;
 import com.idle.commonservice.base.BaseEntity;
 import com.idle.commonservice.jpa.PointConverter;
 import com.idle.commonservice.model.Point;
-import com.idle.userservice.presentation.dto.auth.request.UserRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
@@ -66,16 +65,17 @@ public class User extends BaseEntity {
     /**
      * 회원가입용
      */
-    public static User from(UserRequest userRequest) {
+    public static User of(String serialId , String password , EProvider provider , ERole role , String nicName) {
         return User.builder()
-                .serialId(userRequest.getSerialId())
-                .password(Password.builder().value(userRequest.getPassword()).build())
-                .provider(userRequest.getProvider())
-                .role(userRequest.getRole())
+                .serialId(serialId)
+                .password(Password.builder().value(password).build())
+                .provider(provider)
+                .role(role)
                 .point(Point.builder().value(0).build())
                 .level(Level.builder().value(1).build())
-                .nickname(userRequest.getNickname())
-                .isLogin(false)
+                .nickname(nicName)
+                .isLogin(true)
+                .isDeleted(false)
                 .build();
     }
 }

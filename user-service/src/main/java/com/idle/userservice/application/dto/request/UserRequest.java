@@ -1,4 +1,4 @@
-package com.idle.userservice.presentation.dto.auth.request;
+package com.idle.userservice.application.dto.request;
 
 import com.idle.commonservice.auth.EProvider;
 import com.idle.commonservice.auth.ERole;
