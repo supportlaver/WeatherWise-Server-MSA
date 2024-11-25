@@ -1,6 +1,6 @@
 package com.idle.commonservice.exception.dto;
 
-import com.idle.weather.exception.ErrorCode;
+import com.idle.commonservice.exception.ErrorCode;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.Getter;

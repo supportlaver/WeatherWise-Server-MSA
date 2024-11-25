@@ -1,5 +1,6 @@
 package com.idle.userservice.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,5 +15,10 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PRIVATE)
 public class Password {
+    @Column(name = "password")
     private String value;
+
+    public static Password of(String value) {
+        return Password.builder().value(value).build();
+    }
 }

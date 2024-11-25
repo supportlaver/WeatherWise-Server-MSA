@@ -1,0 +1,55 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Security OAuth2 설정
+  security:
+    oauth2:
+      client:
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}  # 환경 변수로 치환
+            client-secret: ${KAKAO_CLIENT_SECRET}  # 환경 변수로 치환
+            client-authentication-method: client_secret_post
+            redirect-uri: ${KAKAO_REDIRECT_URI}  # 환경 변수로 치환
+            authorization-grant-type: authorization_code
+            client-name: kakao
+            scope:
+              - profile_nickname
+              - profile_image
+
+# 로그인 성공 후 리다이렉트할 URL 추가
+after-login:
+  default-success: ${AFTER_LOGIN_DEFAULT_SUCCESS_URL}  # 로그인 성공 URL을 환경 변수로 치환
+  default-fail: ${AFTER_LOGIN_DEFAULT_FAIL_URL}  # 로그인 실패 URL을 환경 변수로 치환
+  oauth2-success: ${AFTER_LOGIN_OAUTH2_SUCCESS_URL}  # OAuth2 로그인 성공 URL 환경 변수
+  oauth2-fail: ${AFTER_LOGIN_OAUTH2_FAIL_URL}  # OAuth2 로그인 실패 URL 환경 변수
+  oauth2-success-guest: ${AFTER_LOGIN_OAUTH2_SUCCESS_GUEST_URL}  # OAuth2 게스트 로그인 성공 URL 환경 변수
+
+client:
+  provider:
+    kakao:
+      authorization-uri: https://kauth.kakao.com/oauth/authorize
+      token-uri: https://kauth.kakao.com/oauth/token
+      user-info-uri: https://kapi.kakao.com/v2/user/me
+  registration:
+    kakao:
+      client-id: ${KAKAO_CLIENT_ID}  # 환경 변수로 치환
+      redirect-uri: ${KAKAO_REDIRECT_URI}  # 환경 변수로 치환
+
+local:
+  endpoints: http://localhost:8080
