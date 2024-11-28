@@ -32,6 +32,7 @@ public enum ErrorCode {
     BAD_REQUEST_JSON(HttpStatus.BAD_REQUEST, "4004", "잘못된 JSON 형식입니다."),
     INVALID_PARAMETER_FORMAT(HttpStatus.BAD_REQUEST, "4005", "요청에 유효하지 않은 파라미터 형식입니다."),
     MISSING_REQUEST_PARAMETER(HttpStatus.BAD_REQUEST, "4006", "필수 요청 파라미터가 누락되었습니다."),
+    DUPLICATION_NICKNAME(HttpStatus.BAD_REQUEST, "4007", "중복된 닉네임입니다"),
 
 
     /**
@@ -48,7 +49,9 @@ public enum ErrorCode {
     /**
      * 502 Bad Gateway: Gateway Server Error
      */
-    AUTH_SERVER_USER_INFO_ERROR(HttpStatus.BAD_GATEWAY, "5020", "소셜 서버에서 유저 정보를 가져오는데 실패하였습니다.");
+    AUTH_SERVER_USER_INFO_ERROR(HttpStatus.BAD_GATEWAY, "5020", "소셜 서버에서 유저 정보를 가져오는데 실패하였습니다."),
+
+    CONVERT_JSON_ERROR(HttpStatus.UNPROCESSABLE_ENTITY, "4220", "JSON 변환 시 오류가 발생했습니다.");
 
     private final HttpStatus status;
     private final String code;

@@ -18,7 +18,7 @@ public class Password {
     @Column(name = "password")
     private String value;
 
-    public static Password of(String value) {
+    public static Password from(String value) {
         return Password.builder().value(value).build();
     }
 }

@@ -9,3 +9,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+ai:
+  endpoints:
+    mission-auth: ${AI_ENDPOINTS_MISSION_AUTH}
+    weather: ${AI_ENDPOINTS_WEATHER}
+    local: ${AI_LOCAL}
+server:
+  port: 8082

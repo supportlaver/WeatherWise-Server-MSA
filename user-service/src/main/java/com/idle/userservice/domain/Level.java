@@ -1,5 +1,6 @@
 package com.idle.userservice.domain;
 
+import com.idle.commonservice.model.Point;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -18,4 +19,7 @@ import static lombok.AccessLevel.PROTECTED;
 public class Level {
     @Column(name = "level")
     private int value;
+    public static Level from(int point) {
+        return Level.builder().value(point).build();
+    }
 }

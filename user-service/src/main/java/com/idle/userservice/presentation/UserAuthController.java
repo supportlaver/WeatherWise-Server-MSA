@@ -1,10 +1,14 @@
 package com.idle.userservice.presentation;
 
 import com.idle.commonservice.auth.EProvider;
+import com.idle.commonservice.base.BaseResponse;
 import com.idle.userservice.application.UserAuthService;
+import com.idle.userservice.application.dto.request.AuthSignUpRequest;
 import com.idle.userservice.application.dto.request.UpdateUserRefreshToken;
 import com.idle.userservice.application.dto.request.UserSecurityFormDto;
+import com.idle.userservice.application.dto.response.AuthSignUpResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserAuthController {
 
     private final UserAuthService userAuthService;
+
 
     @PostMapping("/refresh-token")
     public void updateRefreshTokenAndLoginStatus(@RequestBody UpdateUserRefreshToken req) {
@@ -40,4 +45,9 @@ public class UserAuthController {
         return ResponseEntity.ok().body(userAuthService.findByIdAndIsLoginAndRefreshTokenIsNotNull(id,b));
     }
 
+    // 자체 회원 가입
+    @PostMapping(path = "/sign-up", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse<AuthSignUpResponse>> signUp(@RequestBody AuthSignUpRequest req) {
+        return ResponseEntity.ok().body(new BaseResponse<>(userAuthService.signUp(req)));
+    }
 }

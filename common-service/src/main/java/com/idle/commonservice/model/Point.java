@@ -16,6 +16,10 @@ import static lombok.AccessLevel.PROTECTED;
 public class Point {
     private int value;
 
+    public static Point from(int point) {
+        return Point.builder().value(point).build();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

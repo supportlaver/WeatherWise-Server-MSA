@@ -25,7 +25,7 @@ public class UserService {
 
     @Transactional
     public UserSecurityFormDto createUser(UserRequest req) {
-        User user = userRepository.save(User.of(req.getSerialId() , req.getPassword() ,
+        User user = userRepository.save(User.signUpSocialLogin(req.getSerialId() , req.getPassword() ,
                                                 req.getProvider() , req.getRole() , req.getNickname()));
         return new UserSecurityFormDto(user.getId(), user.getPassword().getValue(), user.getRole());
     }

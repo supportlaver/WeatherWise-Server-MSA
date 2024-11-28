@@ -63,19 +63,24 @@ public class User extends BaseEntity {
     private ERole role;
 
     /**
-     * 회원가입용
+     * 회원가입용 (소셜)
      */
-    public static User of(String serialId , String password , EProvider provider , ERole role , String nicName) {
+    public static User signUpSocialLogin(String serialId , String password , EProvider provider , ERole role , String nicName) {
         return User.builder()
                 .serialId(serialId)
-                .password(Password.builder().value(password).build())
+                .password(Password.from(password))
                 .provider(provider)
                 .role(role)
-                .point(Point.builder().value(0).build())
-                .level(Level.builder().value(1).build())
+                .point(Point.from(0))
+                .level(Level.from(0))
                 .nickname(nicName)
                 .isLogin(true)
                 .isDeleted(false)
                 .build();
     }
+
+    // 도메인이 너무 커지면 Entity 자체가 너무 비대해진다 -> Service 계층이 entity 로 들어가는 느낌
+    // 순수하게 도메인의 기능이 맞는가 ?
+    // 회사마다 달라질 수 있는? (이상과 현실의 차이)
+    // 퍼실레이터님 : 현실과 이상이 다르기 때문에 정통 DDD 를 꼭 고집할 필요는 없을 수 있다.
 }
