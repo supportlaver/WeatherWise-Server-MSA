@@ -2,7 +2,6 @@ package com.idle.commonservice.jpa;
 
 
 import com.idle.commonservice.model.Level;
-import com.idle.commonservice.model.Point;
 import jakarta.persistence.AttributeConverter;
 
 public class LevelConverter implements AttributeConverter<Level, Integer> {

@@ -6,7 +6,9 @@ import com.idle.userservice.application.dto.request.AuthSignUpRequest;
 import com.idle.userservice.application.dto.request.UserRequest;
 import com.idle.userservice.application.dto.request.UserSecurityFormDto;
 import com.idle.userservice.application.dto.response.AuthSignUpResponse;
+import com.idle.userservice.application.dto.response.UserAcquisitionExpResponse;
 import com.idle.userservice.application.dto.response.UserResponse;
+import com.idle.userservice.presentation.dto.request.AcquisitionExp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
     @GetMapping("/{user-id}")
@@ -33,5 +35,11 @@ public class UserController {
     @PostMapping(path = "/sign-up", produces = MediaType.APPLICATION_JSON_VALUE)
     public AuthSignUpResponse signUp(@RequestBody AuthSignUpRequest req) {
         return userService.signUp(req);
+    }
+
+    // 경험치 획득
+    @PostMapping(path = "/exp")
+    public UserAcquisitionExpResponse signUp(@RequestBody AcquisitionExp req) {
+        return userService.acquisitionExp(req.getUserId() , req.getExp());
     }
 }

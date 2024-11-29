@@ -31,5 +31,16 @@ public class CreatedMission extends BaseEntity {
     @Embedded
     private Challenger challenger;
 
+    @Embedded
+    private ImageFileInfo imageFileInfo;
+
     private boolean isCompleted;
+
+    public void updateImageFileInfo(String originalFileName, String uploadFileUrl) {
+        this.imageFileInfo = ImageFileInfo.of(originalFileName, uploadFileUrl);
+    }
+
+    public void completedMission() {
+        this.isCompleted = true;
+    }
 }

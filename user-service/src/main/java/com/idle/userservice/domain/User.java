@@ -3,9 +3,9 @@ import com.idle.commonservice.auth.EProvider;
 import com.idle.commonservice.auth.ERole;
 import com.idle.commonservice.base.BaseEntity;
 import com.idle.commonservice.jpa.LevelConverter;
-import com.idle.commonservice.jpa.PointConverter;
+import com.idle.commonservice.jpa.ExpConverter;
 import com.idle.commonservice.model.Level;
-import com.idle.commonservice.model.Point;
+import com.idle.commonservice.model.Exp;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
@@ -23,8 +23,8 @@ public class User extends BaseEntity {
     @Column(name = "user_id")
     private Long id;
 
-    @Convert(converter = PointConverter.class)
-    private Point point;
+    @Convert(converter = ExpConverter.class)
+    private Exp exp;
 
     @Convert(converter = LevelConverter.class)
     private Level level;
@@ -73,12 +73,29 @@ public class User extends BaseEntity {
                 .password(Password.from(password))
                 .provider(provider)
                 .role(role)
-                .point(Point.from(0))
+                .exp(Exp.from(0))
                 .level(Level.from(1))
                 .nickname(nicName)
                 .isLogin(true)
                 .isDeleted(false)
                 .build();
+    }
+
+    public void acquisitionExp(int exp) {
+        int totalExp = this.exp.getValue() + exp;
+
+        if (totalExp > 100) {
+            levelUp();
+            calculateExp(totalExp);
+        } else calculateExp(totalExp);
+    }
+
+    private void levelUp() {
+        this.level = this.level.levelUp();
+    }
+
+    private void calculateExp(int totalExp) {
+        this.exp = this.exp.calculateExp(totalExp);
     }
 
     // 도메인이 너무 커지면 Entity 자체가 너무 비대해진다 -> Service 계층이 entity 로 들어가는 느낌

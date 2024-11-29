@@ -13,19 +13,25 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter @Builder
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PRIVATE)
-public class Point {
+public class Exp {
     private int value;
 
-    public static Point from(int point) {
-        return Point.builder().value(point).build();
+    public static Exp from(int exp) {
+        return Exp.builder().value(exp).build();
+    }
+
+    public Exp calculateExp(int totalExp) {
+        return Exp.builder()
+                .value(totalExp - 100)
+                .build();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return getValue() == point.getValue();
+        Exp exp = (Exp) o;
+        return getValue() == exp.getValue();
     }
 
     @Override

@@ -1,19 +1,17 @@
-package com.idle.createdmissionservice.infrastructure.dto.response;
+package com.idle.createdmissionservice.application.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionResponse {
-    private Long missionId;
+public class SingleMission {
+    private Long id;
     private String name;
-    private String question;
+    private boolean isCompleted;
     private int point;
 }

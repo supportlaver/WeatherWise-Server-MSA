@@ -5,15 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionResponse {
-    private Long missionId;
-    private String name;
-    private String question;
-    private int point;
+public class UserAcquisitionExpResponse {
+    private Long userId;
+    private int level;
+    private String nickName;
+    private int exp;
 }

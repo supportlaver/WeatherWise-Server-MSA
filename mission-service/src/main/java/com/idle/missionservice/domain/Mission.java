@@ -1,8 +1,8 @@
 package com.idle.missionservice.domain;
 
 import com.idle.commonservice.base.BaseEntity;
-import com.idle.commonservice.jpa.PointConverter;
-import com.idle.commonservice.model.Point;
+import com.idle.commonservice.jpa.ExpConverter;
+import com.idle.commonservice.model.Exp;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,12 +19,12 @@ public class Mission extends BaseEntity {
     @Column(name = "mission_id")
     private Long id;
 
-    private String name;
-    private String description;
+    @Embedded
+    private MissionInfo missionInfo;
 
-    @Convert(converter = PointConverter.class)
+    @Convert(converter = ExpConverter.class)
     @Column(name = "reward_point")
-    private Point rewardPoint;
+    private Exp rewardExp;
 
     @Enumerated(STRING)
     private WeatherType weatherType;

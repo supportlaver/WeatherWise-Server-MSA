@@ -40,7 +40,7 @@ public class UserResponse {
                 .refreshToken(user.getRefreshToken())
                 .isDeleted(user.getIsDeleted())
                 .level(user.getLevel().getValue())
-                .point(user.getPoint().getValue())
+                .point(user.getExp().getValue())
                 .personalWeatherTraits(user.getPersonalWeatherTraits())
                 .isCompletedSurvey(user.getIsCompletedSurvey())
                 .build();

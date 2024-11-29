@@ -23,6 +23,12 @@ public class Level {
         return Level.builder().value(level).build();
     }
 
+    public Level levelUp() {
+        return Level.builder()
+                .value(this.value+1)
+                .build();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

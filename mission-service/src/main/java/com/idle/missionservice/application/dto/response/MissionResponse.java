@@ -1,7 +1,6 @@
 package com.idle.missionservice.application.dto.response;
 
 import com.idle.missionservice.domain.Mission;
-import com.idle.missionservice.domain.MissionRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +19,7 @@ public class MissionResponse {
         return MissionResponse.builder()
                 .missionId(m.getId())
                 .name(m.getName())
-                .point(m.getRewardPoint().getValue())
+                .point(m.getRewardExp().getValue())
                 .build();
     }
 }
