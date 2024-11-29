@@ -1,5 +1,6 @@
 package com.idle.createdmissionservice.domain;
 
+import com.idle.commonservice.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,14 +17,13 @@ import static jakarta.persistence.GenerationType.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class CreatedMission {
+public class CreatedMission extends BaseEntity {
     @Id @GeneratedValue(strategy = IDENTITY)
     @Column(name = "created_mission_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "mission_id")
-    private Mission mission;
+    @Embedded
+    private BasedMission basedMission;
 
     @Enumerated(STRING)
     private MissionTime missionTime;

@@ -18,4 +18,9 @@ public class WeatherService {
         // application 계층 DTO 로 변환
         return WeatherInfo.from(res);
     }
+
+    public void getPersonalizedWeatherInfo(double latitude , double longitude,Long userId) {
+        // 날씨 정보 가져오기
+        weatherProvider.getPersonalizedWeatherInfo(latitude,longitude,userId);
+    }
 }

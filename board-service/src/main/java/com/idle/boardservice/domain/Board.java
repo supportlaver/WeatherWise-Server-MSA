@@ -1,6 +1,6 @@
 package com.idle.boardservice.domain;
 
-import com.idle.weather.global.base.BaseEntity;
+import com.idle.commonservice.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

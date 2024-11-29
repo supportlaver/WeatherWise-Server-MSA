@@ -44,10 +44,4 @@ public class UserAuthController {
         System.out.println("JIWON!");
         return ResponseEntity.ok().body(userAuthService.findByIdAndIsLoginAndRefreshTokenIsNotNull(id,b));
     }
-
-    // 자체 회원 가입
-    @PostMapping(path = "/sign-up", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BaseResponse<AuthSignUpResponse>> signUp(@RequestBody AuthSignUpRequest req) {
-        return ResponseEntity.ok().body(new BaseResponse<>(userAuthService.signUp(req)));
-    }
 }

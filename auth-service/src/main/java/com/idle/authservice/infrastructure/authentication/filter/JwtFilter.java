@@ -41,6 +41,11 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
+        if (path.startsWith("/api")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // Request Header에서 토큰 추출
         String token = HeaderUtil.refineHeader(request, Constants.AUTHORIZATION_HEADER, Constants.BEARER_PREFIX)
                 .orElse(null);

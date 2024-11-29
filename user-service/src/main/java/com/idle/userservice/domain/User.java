@@ -2,7 +2,9 @@ package com.idle.userservice.domain;
 import com.idle.commonservice.auth.EProvider;
 import com.idle.commonservice.auth.ERole;
 import com.idle.commonservice.base.BaseEntity;
+import com.idle.commonservice.jpa.LevelConverter;
 import com.idle.commonservice.jpa.PointConverter;
+import com.idle.commonservice.model.Level;
 import com.idle.commonservice.model.Point;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,7 +26,7 @@ public class User extends BaseEntity {
     @Convert(converter = PointConverter.class)
     private Point point;
 
-    @Embedded
+    @Convert(converter = LevelConverter.class)
     private Level level;
 
     @Embedded
@@ -72,7 +74,7 @@ public class User extends BaseEntity {
                 .provider(provider)
                 .role(role)
                 .point(Point.from(0))
-                .level(Level.from(0))
+                .level(Level.from(1))
                 .nickname(nicName)
                 .isLogin(true)
                 .isDeleted(false)

@@ -1,7 +1,8 @@
 package com.idle.createdmissionservice.domain;
 
-import com.idle.weather.global.exception.BaseException;
-import com.idle.weather.global.exception.ErrorCode;
+
+import com.idle.commonservice.exception.BaseException;
+import com.idle.commonservice.exception.ErrorCode;
 
 public enum MissionTime {
 

@@ -5,5 +5,5 @@ import com.idle.missionservice.infrastructure.CurrentWeatherInfoResponse;
 
 public interface AIWeatherInfoProvider {
     WeatherData getCurrentWeatherInfo(double latitude , double longitude);
-    void getPersonalizedWeatherInfo(double latitude , double longitude);
+    void getPersonalizedWeatherInfo(double latitude , double longitude , Long userId);
 }
