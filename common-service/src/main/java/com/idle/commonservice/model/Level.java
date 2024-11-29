@@ -24,6 +24,7 @@ public class Level {
     }
 
     public Level levelUp() {
+        System.out.println("JIWON currentLevel = " + this.value);
         return Level.builder()
                 .value(this.value+1)
                 .build();

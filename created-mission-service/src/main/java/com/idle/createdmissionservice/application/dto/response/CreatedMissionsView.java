@@ -14,14 +14,15 @@ public class CreatedMissionsView {
     private String missionName;
     private int point;
     private String nickName;
+    private boolean isCompleted;
 
     public static CreatedMissionsView of(CreatedMission cm , MissionResponse m , UserData u) {
         return CreatedMissionsView.builder()
                 .createdMissionId(cm.getId())
                 .missionName(m.getName())
-                .point(m.getPoint())
+                .point(m.getExp())
                 .nickName(u.getNickName())
+                .isCompleted(cm.isCompleted())
                 .build();
     }
-
 }

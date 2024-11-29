@@ -13,13 +13,15 @@ import lombok.NoArgsConstructor;
 public class MissionResponse {
     private Long missionId;
     private String name;
-    private int point;
+    private String question;
+    private int exp;
 
     public static MissionResponse from(Mission m) {
         return MissionResponse.builder()
                 .missionId(m.getId())
-                .name(m.getName())
-                .point(m.getRewardExp().getValue())
+                .name(m.getMissionInfo().getName())
+                .question(m.getMissionInfo().getEnglishQuestion())
+                .exp(m.getRewardExp().getValue())
                 .build();
     }
 }

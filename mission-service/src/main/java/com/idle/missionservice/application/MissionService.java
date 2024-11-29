@@ -5,13 +5,14 @@ import com.idle.missionservice.domain.Mission;
 import com.idle.missionservice.domain.MissionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
-@Service
+@Service @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MissionService {
 
@@ -22,5 +23,10 @@ public class MissionService {
         List<Mission> missions = missionIds.stream().map(missionRepository::findById).toList();
 
         return missions.stream().map(MissionResponse::from).collect(toList());
+    }
+
+    public MissionResponse getMissionInfo(Long missionId) {
+        Mission mission = missionRepository.findById(missionId);
+        return MissionResponse.from(mission);
     }
 }

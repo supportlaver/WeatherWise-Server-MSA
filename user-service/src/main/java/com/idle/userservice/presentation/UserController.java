@@ -39,7 +39,7 @@ public class UserController {
 
     // 경험치 획득
     @PostMapping(path = "/exp")
-    public UserAcquisitionExpResponse signUp(@RequestBody AcquisitionExp req) {
+    public UserAcquisitionExpResponse acquisitionExp(@RequestBody AcquisitionExp req) {
         return userService.acquisitionExp(req.getUserId() , req.getExp());
     }
 }

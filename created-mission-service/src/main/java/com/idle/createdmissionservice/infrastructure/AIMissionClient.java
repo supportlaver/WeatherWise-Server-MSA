@@ -22,11 +22,9 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class AIMissionClient implements AIMissionProvider {
 
-    private final RestTemplate restTemplate;
+    // private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
-    @Value("${ai.endpoints.weather}")
-    private String aiWeatherEndpoints;
 
     @Value("${ai.endpoints.mission-auth}")
     private String aiMissionAuthEndpoints;
@@ -44,7 +42,8 @@ public class AIMissionClient implements AIMissionProvider {
 
     @Override
     public boolean authMission(MissionAuth missionAuth) {
-        HttpHeaders headers = new HttpHeaders();
+        return true;
+/*        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<MissionAuth> request = new HttpEntity<>(missionAuth, headers);
         String response = restTemplate.postForObject(AI_LOCAL_ENDPOINT + "verification", request, String.class);
@@ -54,6 +53,6 @@ public class AIMissionClient implements AIMissionProvider {
         } catch (JsonProcessingException e) {
             throw new BaseException(ErrorCode.CONVERT_JSON_ERROR);
         }
-        return jsonNode.get("certified").asBoolean();
+        return jsonNode.get("certified").asBoolean();*/
     }
 }

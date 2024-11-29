@@ -21,6 +21,7 @@ public class Exp {
     }
 
     public Exp calculateExp(int totalExp) {
+        System.out.println("JIWON totalExp = " + this.value);
         return Exp.builder()
                 .value(totalExp - 100)
                 .build();

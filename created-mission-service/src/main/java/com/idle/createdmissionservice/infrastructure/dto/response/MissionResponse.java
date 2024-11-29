@@ -1,19 +1,16 @@
 package com.idle.createdmissionservice.infrastructure.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Builder
-@Getter
+@Getter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class MissionResponse {
     private Long missionId;
     private String name;
     private String question;
-    private int point;
+    private int exp;
 }

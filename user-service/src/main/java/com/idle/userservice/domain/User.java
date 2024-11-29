@@ -2,6 +2,8 @@ package com.idle.userservice.domain;
 import com.idle.commonservice.auth.EProvider;
 import com.idle.commonservice.auth.ERole;
 import com.idle.commonservice.base.BaseEntity;
+import com.idle.commonservice.exception.BaseException;
+import com.idle.commonservice.exception.ErrorCode;
 import com.idle.commonservice.jpa.LevelConverter;
 import com.idle.commonservice.jpa.ExpConverter;
 import com.idle.commonservice.model.Level;
@@ -82,24 +84,23 @@ public class User extends BaseEntity {
     }
 
     public void acquisitionExp(int exp) {
+        if (exp <= 0) {
+            throw new BaseException(ErrorCode.INVALID_EXP_VALUE);
+        }
         int totalExp = this.exp.getValue() + exp;
-
-        if (totalExp > 100) {
-            levelUp();
-            calculateExp(totalExp);
-        } else calculateExp(totalExp);
+        if (isLevelUp(totalExp)) levelUp(totalExp);
+        else updateExp(totalExp);
     }
 
-    private void levelUp() {
+    private boolean isLevelUp(int totalExp) {
+        return totalExp > 100;
+    }
+    private void levelUp(int totalExp) {
         this.level = this.level.levelUp();
-    }
-
-    private void calculateExp(int totalExp) {
         this.exp = this.exp.calculateExp(totalExp);
     }
 
-    // 도메인이 너무 커지면 Entity 자체가 너무 비대해진다 -> Service 계층이 entity 로 들어가는 느낌
-    // 순수하게 도메인의 기능이 맞는가 ?
-    // 회사마다 달라질 수 있는? (이상과 현실의 차이)
-    // 퍼실레이터님 : 현실과 이상이 다르기 때문에 정통 DDD 를 꼭 고집할 필요는 없을 수 있다.
+    private void updateExp(int totalExp) {
+        this.exp = Exp.from(totalExp);
+    }
 }

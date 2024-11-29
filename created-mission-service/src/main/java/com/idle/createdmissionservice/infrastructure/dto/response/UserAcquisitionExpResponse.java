@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserAcquisitionExpResponse {
     private Long userId;
-    private int level;
+    private int userLevel;
     private String nickName;
     private int exp;
 }

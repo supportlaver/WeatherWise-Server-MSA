@@ -21,13 +21,19 @@ public class CreatedMissionController {
 
     private final CreatedMissionService createdMissionService;
 
-    // 생성한 미션 확인
-    @GetMapping("/{user-id}")
-    public ResponseEntity<BaseResponse<List<CreatedMissionsView>>> getMissions(@PathVariable("user-id") Long userId, @RequestParam("date") LocalDate date) {
+    // 넘어온 날짜에 생성한 미션들 확인
+    // TODO: 11/29/24 JWT 로직 확정된다면 URL 변경하기
+    @GetMapping("/temp/{user-id}")
+    public ResponseEntity<BaseResponse<List<CreatedMissionsView>>> getCreatedMissions(@PathVariable("user-id") Long userId, @RequestParam("date") LocalDate date) {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.getMissionList(date,userId)));
     }
 
-    // 미션 생성하기
+    // 미션 조회 (단건)
+    @GetMapping("/{created-mission-id}")
+    public ResponseEntity<BaseResponse<CreatedMissionsView>> getCreatedMission(@PathVariable("created-mission-id") Long createdMissionId) {
+        return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.getMission(createdMissionId)));
+    }
+
     // 미션 생성
     @PostMapping("/{user-id}")
     public void createMission(@PathVariable("user-id") Long userId, @RequestBody CreateMission createMission) {
@@ -41,6 +47,4 @@ public class CreatedMissionController {
                                                                              @RequestPart("imageFile") MultipartFile imageFile) throws IOException {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.authMission(userId , createdMissionId , imageFile)));
     }
-
-
 }

@@ -17,7 +17,6 @@ public interface MissionServiceClient {
     @GetMapping
     List<MissionResponse> getMissionsInfo(@RequestParam("missionId") List<Long> missionIds);
 
-    // TODO: 11/29/24 Mission-Service 에서 컨트롤러 만들기
     @GetMapping("/{mission-id}")
     MissionResponse findById(@PathVariable("mission-id") Long missionId);
 }

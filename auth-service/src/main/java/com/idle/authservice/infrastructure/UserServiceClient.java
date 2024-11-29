@@ -23,7 +23,7 @@ public interface UserServiceClient {
     @PostMapping("/user-auth/refresh-token")
     void updateRefreshTokenAndLoginStatus(UpdateUserRefreshToken req);
 
-    @GetMapping("/user/{user-id}")
+    @GetMapping("/users/{user-id}")
     UserResponse findById(@PathVariable("user-id") Long userId);
 
 
@@ -33,7 +33,7 @@ public interface UserServiceClient {
             @RequestParam("provider") EProvider provider
     );
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     UserSecurityFormDto createUser(@RequestBody UserRequest userRequest);
 
     @GetMapping("/user-auth/user-id-role")
@@ -44,6 +44,6 @@ public interface UserServiceClient {
                                                                           @RequestParam("refresh-token-null") boolean b);
 
 
-    @PostMapping("/user/sign-up")
+    @PostMapping("/users/sign-up")
     AuthSignUpResponse signUp(@RequestBody AuthSignUpRequest req);
 }

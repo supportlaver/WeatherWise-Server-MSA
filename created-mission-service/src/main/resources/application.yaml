@@ -23,3 +23,7 @@ cloud:
     credentials:
       access-key: ${AWS_ACCESS_KEY}  # 환경 변수로 치환
       secret-key: ${AWS_SECRET_KEY}  # 환경 변수로 치환
+
+ai:
+  endpoints:
+    mission-auth: ${AI_ENDPOINTS_MISSION_AUTH}

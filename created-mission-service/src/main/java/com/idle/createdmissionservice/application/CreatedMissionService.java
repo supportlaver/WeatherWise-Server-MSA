@@ -17,20 +17,19 @@ import com.idle.createdmissionservice.infrastructure.dto.response.MissionRespons
 import com.idle.createdmissionservice.infrastructure.dto.response.UserAcquisitionExpResponse;
 import com.idle.createdmissionservice.infrastructure.dto.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Service
+@Service @Slf4j
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CreatedMissionService {
 
     private final CreatedMissionRepository createdMissionRepository;
@@ -47,9 +46,6 @@ public class CreatedMissionService {
 
     @Transactional
     public MissionAuthenticateView authMission(Long userId, Long createdMissionId, MultipartFile imageFile) {
-        // user 정보 가져오기
-        UserResponse user = userClient.findById(userId);
-
         // createdMission 정보 가져오기
         CreatedMission createdMission = createdMissionRepository.findById(createdMissionId);
 
@@ -60,6 +56,7 @@ public class CreatedMissionService {
         // BasedMission 정보 가져오기
         Long missionId = createdMission.getBasedMission().getMissionId();
         MissionResponse mission = missionClient.findById(missionId);
+
 
         // ai 서버에 미션 인증 요청
         boolean authenticationResult = aiMissionProvider
@@ -74,15 +71,13 @@ public class CreatedMissionService {
 
         // 인증 성공시
         // User 경험치 추가 (경험치 추가 할 때 레벨 계산)
-        UserAcquisitionExpResponse res = userClient.acquisitionExp(AcquisitionExp.of(userId, mission.getPoint()));
+        UserAcquisitionExpResponse res = userClient.acquisitionExp(AcquisitionExp.of(userId, mission.getExp()));
 
         // CreatedMission 상태 변경 (미션 성공)
         createdMission.completedMission();
 
-        return MissionAuthenticateView.success(true,mission.getPoint() , res.getLevel() , res.getExp());
+        return MissionAuthenticateView.success(true,mission.getExp() , res.getUserLevel() , res.getExp());
     }
-
-
 
 
     public List<CreatedMissionsView> getMissionList(LocalDate date , Long userId) {
@@ -114,4 +109,17 @@ public class CreatedMissionService {
     }
 
 
+    public CreatedMissionsView getMission(Long createdMissionId) {
+        CreatedMission createdMission = createdMissionRepository.findById(createdMissionId);
+
+        MissionResponse mission = missionClient.findById(createdMission.getBasedMission().getMissionId());
+
+        // user 정보 가져오기
+        UserResponse res = userClient.findById(createdMission.getChallenger().getUserId());
+
+        // application DTO 로 변환
+        UserData user = UserData.of(res.getId(), res.getNickname());
+
+        return CreatedMissionsView.of(createdMission , mission , user);
+    }
 }

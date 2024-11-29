@@ -29,6 +29,7 @@ public enum ErrorCode {
     // Bad Request Error
     NOT_END_POINT(HttpStatus.BAD_REQUEST, "4000", "End Point 가 존재하지 않습니다."),
     INVALID_PARAMETER(HttpStatus.BAD_REQUEST, "4001", "Invalid PARAMETER"),
+    INVALID_EXP_VALUE(HttpStatus.BAD_REQUEST, "4002", "유효한 경험치 값이 아닙니다."),
     BAD_DATA(HttpStatus.BAD_REQUEST, "4003", "데이터가 올바르지 않습니다."),
     BAD_REQUEST_JSON(HttpStatus.BAD_REQUEST, "4004", "잘못된 JSON 형식입니다."),
     INVALID_PARAMETER_FORMAT(HttpStatus.BAD_REQUEST, "4005", "요청에 유효하지 않은 파라미터 형식입니다."),
