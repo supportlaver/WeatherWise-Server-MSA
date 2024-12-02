@@ -10,11 +10,15 @@ import com.idle.userservice.application.dto.response.AuthSignUpResponse;
 import com.idle.userservice.application.dto.response.UserAcquisitionExpResponse;
 import com.idle.userservice.application.dto.response.UserResponse;
 import com.idle.userservice.presentation.dto.request.AcquisitionExp;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Enumeration;
+import java.util.Iterator;
 
 @RestController @Slf4j
 @RequiredArgsConstructor
@@ -49,7 +53,17 @@ public class UserController {
         return String.valueOf(userId);
     }
     @GetMapping("/test2")
-    public String test2() {
+    public String test2(HttpServletRequest request) {
+        System.out.println("Request URI: " + request.getRequestURI());
+        System.out.println("Request URL: " + request.getRequestURL().toString());
+        Enumeration<String> headerNames = request.getHeaderNames();
+        if (headerNames != null) {
+            while (headerNames.hasMoreElements()) {
+                String headerName = headerNames.nextElement(); // 헤더 이름
+                String headerValue = request.getHeader(headerName); // 헤더 값
+                System.out.println(headerName + ": " + headerValue);
+            }
+        }
         return "success";
     }
 }

@@ -42,14 +42,10 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        log.info("JIWON1");
-
         /*if (path.startsWith("/api")) {
             filterChain.doFilter(request, response);
             return;
         }*/
-
-        log.info("JIWON2");
 
         // Request Header에서 토큰 추출
         String token = HeaderUtil.refineHeader(request, Constants.AUTHORIZATION_HEADER, Constants.BEARER_PREFIX)
@@ -79,9 +75,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 return super.getHeader(name);
             }
         };
-
-        log.info("JIWON3");
-
+        log.info("request = {} " , request.getHeader("USER_ID"));
 
         // 인증 전 객체
         UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(

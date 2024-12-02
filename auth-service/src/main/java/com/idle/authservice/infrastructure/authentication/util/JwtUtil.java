@@ -31,8 +31,6 @@ public class JwtUtil implements InitializingBean {
 
     private final UserServiceClient userServiceClient;
 
-    // private final UserRepository userRepository;
-
     @Value("${jwt.secret-key}")
     private String secretKey;
     @Value("${jwt.access-token-expire-period}")

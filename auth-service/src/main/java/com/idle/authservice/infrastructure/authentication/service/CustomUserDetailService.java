@@ -16,17 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class CustomUserDetailService implements UserDetailsService {
-    // private final UserJpaRepository userJpaRepository;
+
     private final UserServiceClient userServiceClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
         UserSecurityFormDto userDto = userServiceClient.findUserIdAndRoleBySerialId(username)
                 .orElseThrow(() -> new BaseException(ErrorCode.NOT_FOUND_USER));
-
-        log.info("user = {} ", userDto.getId());
-        log.info("user = {} ", userDto.getRole());
-        log.info("user = {} ", userDto.getPassword());
 
         // UserSecurityForm 인터페이스로 변환
         UserSecurityForm user = UserSecurityFormDto.toSecurityForm(userDto);
@@ -36,9 +32,6 @@ public class CustomUserDetailService implements UserDetailsService {
     public UserDetails loadUserById(Long userId) throws BaseException {
         UserSecurityFormDto userDto = userServiceClient.findByIdAndIsLoginAndRefreshTokenIsNotNull(userId, true)
                 .orElseThrow(() -> new BaseException(ErrorCode.NOT_FOUND_USER));
-        log.info("user = {} " ,userDto.getId());
-        log.info("user = {} " ,userDto.getRole());
-        log.info("user = {} " ,userDto.getPassword());
         /*UserJpaRepository.UserSecurityForm user = userJpaRepository.findByIdAndIsLoginAndRefreshTokenIsNotNull(userId, true)
                 .orElseThrow(() -> new UsernameNotFoundException("Not Found UserId"));*/
         // UserSecurityForm 인터페이스로 변환

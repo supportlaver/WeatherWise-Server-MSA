@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/auth-service/WeatherWise-Server-MSA.auth-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auth-service/WeatherWise-Server-MSA.auth-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/authorization-service/WeatherWise-Server-MSA.authorization-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/authorization-service/WeatherWise-Server-MSA.authorization-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/board-service/WeatherWise-Server-MSA.board-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/board-service/WeatherWise-Server-MSA.board-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common-service/WeatherWise-Server-MSA.common-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common-service/WeatherWise-Server-MSA.common-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/created-mission-service/WeatherWise-Server-MSA.created-mission-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/created-mission-service/WeatherWise-Server-MSA.created-mission-service.main.iml" />

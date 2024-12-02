@@ -28,7 +28,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    // private final UserJpaRepository userJpaRepository;
     private final UserServiceClient userServiceClient;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -60,15 +59,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                             userInfo.getNickName()
                     );
                     UserSecurityFormDto newUserDto = userServiceClient.createUser(userRequestDto);
-                    log.info("CIAN dto = {} ", newUserDto.getPassword());
-                    log.info("CIAN dto = {} ", newUserDto.getRole());
-                    log.info("CIAN dto = {} ", newUserDto.getId());
                     return newUserDto;
                 });
 
-        log.info("JIWON dto = {} ", userSecurityFormDto.getPassword());
-        log.info("JIWON dto = {} ", userSecurityFormDto.getRole());
-        log.info("CIJIWONAN dto = {} ", userSecurityFormDto.getId());
 
         // UserSecurityForm 인터페이스로 변환
         UserSecurityForm userSecurityForm = UserSecurityFormDto.toSecurityForm(userSecurityFormDto);
