@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/weather")
 public class WeatherInfoController {
 
     private final WeatherService weatherService;
@@ -27,7 +27,7 @@ public class WeatherInfoController {
      * 다른 API 로 구현해서 가지고 오는게 더 빠를까?
      * 테스트 해보기
      */
-    @GetMapping("/weather")
+    @GetMapping
     public ResponseEntity<BaseResponse<WeatherInfo>> getWeatherInfo(@RequestParam("latitude") double latitude,
                                                                     @RequestParam("longitude") double longitude){
         return ResponseEntity.ok().body(new BaseResponse<>(weatherService.getCurrentWeatherInfo(latitude,longitude)));

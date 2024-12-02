@@ -91,7 +91,7 @@ public class SecurityConfig {
                                 .logoutSuccessHandler(customSignOutResultHandler)
                                 .deleteCookies("JSESSIONID", "nickname", "accessToken", "refreshToken", "role") // 쿠키 삭제 설정
                 )
-
+/*
                 //예외 처리 설정
                 .exceptionHandling(configurer ->
                         configurer
@@ -99,7 +99,7 @@ public class SecurityConfig {
                                 .accessDeniedHandler(jwtAccessDeniedHandler)
                 )
                 .addFilterBefore(new JwtFilter(jwtUtil, customAuthenticationProvider), LogoutFilter.class)
-                .addFilterBefore(new JwtExceptionFilter(), JwtFilter.class)
+                .addFilterBefore(new JwtExceptionFilter(), JwtFilter.class)*/
 
                 //SecurityFilterChain 빈을 반환
                 .getOrBuild();

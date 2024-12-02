@@ -3,7 +3,7 @@ spring:
     gateway:
       default-filters:
         - RemoveRequestHeader=Cookie
-        - RemoveRequestHeader=USER_ID # USER_ID ??? ????? ??? ??
+        - RemoveRequestHeader=USER_ID
       routes:
           - id: user-service
             uri: http://localhost:8081
@@ -16,11 +16,23 @@ spring:
             uri: http://localhost:8082
             predicates:
               - Path=/api/missions/**
+              - Path=/api/weather/**
+            filters:
+              - AuthorizationHeaderFilter
 
           - id: created-mission-service
             uri: http://localhost:8083
             predicates:
               - Path=/api/created-missions/**
+            filters:
+              - AuthorizationHeaderFilter
+
+          - id: board-service
+            uri: http://localhost:8084
+            predicates:
+              - Path=/api/boards/**
+            filters:
+              - AuthorizationHeaderFilter
 
 
 jwt:

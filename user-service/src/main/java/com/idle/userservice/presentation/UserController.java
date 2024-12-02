@@ -17,9 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Enumeration;
-import java.util.Iterator;
-
 @RestController @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
@@ -50,20 +47,8 @@ public class UserController {
 
     @GetMapping("/test1")
     public String test1(@UserId Long userId) {
-        return String.valueOf(userId);
+        log.info("userId = {} " , userId);
+        return "success1";
     }
-    @GetMapping("/test2")
-    public String test2(HttpServletRequest request) {
-        System.out.println("Request URI: " + request.getRequestURI());
-        System.out.println("Request URL: " + request.getRequestURL().toString());
-        Enumeration<String> headerNames = request.getHeaderNames();
-        if (headerNames != null) {
-            while (headerNames.hasMoreElements()) {
-                String headerName = headerNames.nextElement(); // 헤더 이름
-                String headerValue = request.getHeader(headerName); // 헤더 값
-                System.out.println(headerName + ": " + headerValue);
-            }
-        }
-        return "success";
-    }
+
 }

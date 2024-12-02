@@ -9,7 +9,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-@RestControllerAdvice(basePackages = "com.idle.weather") //적용할 패키지 경로
+@RestControllerAdvice(basePackages = "com.idle") //적용할 패키지 경로
 public class ResponseInterceptor implements ResponseBodyAdvice {
     //Interceptor 실행할지 결정 -> 항상 true 반환
     @Override
