@@ -51,10 +51,7 @@ public class SecurityConfig {
 
     @Bean
     protected SecurityFilterChain securityFilterChain(final HttpSecurity httpSecurity) throws Exception {
-        log.info("JIWON");
         return httpSecurity
-                // .cors(httpSecurityCorsConfigurer ->
-                //         httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable) //보호 비활성화
                 .httpBasic(AbstractHttpConfigurer::disable) // 기본 HTTP 기본 인증 비활성화
                 .sessionManagement((sessionManagement) -> //상태를 유지하지 않는 세션 정책 설정

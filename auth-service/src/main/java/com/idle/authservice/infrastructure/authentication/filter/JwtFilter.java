@@ -10,6 +10,7 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,10 +42,14 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (path.startsWith("/api")) {
+        log.info("JIWON1");
+
+        /*if (path.startsWith("/api")) {
             filterChain.doFilter(request, response);
             return;
-        }
+        }*/
+
+        log.info("JIWON2");
 
         // Request Header에서 토큰 추출
         String token = HeaderUtil.refineHeader(request, Constants.AUTHORIZATION_HEADER, Constants.BEARER_PREFIX)
@@ -63,6 +68,20 @@ public class JwtFilter extends OncePerRequestFilter {
                 Long.valueOf(claims.get(Constants.USER_ID_CLAIM_NAME, String.class)),
                 ERole.valueOf(claims.get(Constants.USER_ROLE_CLAIM_NAME, String.class))
         );
+
+        // 사용자 ID를 헤더에 추가 (헤더 수정)
+        request = new HttpServletRequestWrapper(request) {
+            @Override
+            public String getHeader(String name) {
+                if ("USER_ID".equals(name)) {
+                    return String.valueOf(userInfo.id());
+                }
+                return super.getHeader(name);
+            }
+        };
+
+        log.info("JIWON3");
+
 
         // 인증 전 객체
         UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(

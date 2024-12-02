@@ -6,5 +6,4 @@ include 'mission-service'
 include 'user-service'
 include 'chatting-service'
 include 'common-service'
-include 'authorization-service'
 

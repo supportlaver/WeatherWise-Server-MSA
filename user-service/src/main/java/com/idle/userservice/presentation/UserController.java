@@ -1,5 +1,6 @@
 package com.idle.userservice.presentation;
 
+import com.idle.commonservice.annotation.UserId;
 import com.idle.commonservice.base.BaseResponse;
 import com.idle.userservice.application.UserService;
 import com.idle.userservice.application.dto.request.AuthSignUpRequest;
@@ -41,5 +42,14 @@ public class UserController {
     @PostMapping(path = "/exp")
     public UserAcquisitionExpResponse acquisitionExp(@RequestBody AcquisitionExp req) {
         return userService.acquisitionExp(req.getUserId() , req.getExp());
+    }
+
+    @GetMapping("/test1")
+    public String test1(@UserId Long userId) {
+        return String.valueOf(userId);
+    }
+    @GetMapping("/test2")
+    public String test2() {
+        return "success";
     }
 }
