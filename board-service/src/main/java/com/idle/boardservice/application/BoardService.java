@@ -1,24 +1,25 @@
 package com.idle.boardservice.application;
 
+import com.idle.boardservice.application.dto.response.BoardListResponse;
 import com.idle.boardservice.application.dto.response.BoardResponse;
 import com.idle.boardservice.domain.Board;
 import com.idle.boardservice.domain.BoardRepository;
 import com.idle.boardservice.infrastructure.UserServiceClient;
-import com.idle.boardservice.infrastructure.dto.response.UserResponse;
 import com.idle.boardservice.presentation.dto.request.BoardRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class BoardService {
     private final BoardRepository boardRepository;
-    private final UserServiceClient userClient;
-    private static final String UPVOTE_KEY = "board:upvote";
-    private static final String DOWNVOTE_KEY = "board:downvote";
-    private final RedisTemplate<String, Integer> redisTemplate;
+    private final VoteCacheService voteCacheService;
 
     @Transactional
     public BoardResponse createBoard(Long userId, BoardRequest boardRequest) {
@@ -28,11 +29,19 @@ public class BoardService {
 
         Board savedBoard = boardRepository.save(board);
 
-        String upvoteKey = UPVOTE_KEY + savedBoard.getId();
-        String downvoteKey = DOWNVOTE_KEY + savedBoard.getId();
-        redisTemplate.opsForValue().set(upvoteKey, 0);
-        redisTemplate.opsForValue().set(downvoteKey, 0);
+        voteCacheService.initializeVote(savedBoard.getId());
+
         return BoardResponse.from(board);
+    }
+
+    public BoardResponse getBoardById(Long boardId) {
+        Board board = boardRepository.findById(boardId);
+        return BoardResponse.from(board);
+    }
+
+    public BoardListResponse getBoardsWithRadius(double latitude, double longitude) {
+        List<Board> boards = boardRepository.findByLocationWithinRadius(latitude, longitude);
+        return BoardListResponse.from(boards);
     }
 
 }
