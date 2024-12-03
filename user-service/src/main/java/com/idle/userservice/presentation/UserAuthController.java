@@ -28,7 +28,6 @@ public class UserAuthController {
     @GetMapping("/serial-id-provider")
     public void findBySerialIdAndProvider(@RequestParam("serialId") String serialId,
                                           @RequestParam("provider") EProvider provider) {
-        System.out.println("JIWON?");
         userAuthService.findBySerialIdAndProvider(serialId, provider);
     }
 
@@ -41,7 +40,6 @@ public class UserAuthController {
     public ResponseEntity<UserSecurityFormDto>
     findByIdAndIsLoginAndRefreshTokenIsNotNull(@RequestParam("user-id") Long id ,
                                                @RequestParam("refresh-token-null") boolean b) {
-        System.out.println("JIWON!");
         return ResponseEntity.ok().body(userAuthService.findByIdAndIsLoginAndRefreshTokenIsNotNull(id,b));
     }
 }

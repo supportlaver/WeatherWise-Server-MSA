@@ -1,5 +1,6 @@
 package com.idle.createdmissionservice.presentation;
 
+import com.idle.commonservice.annotation.UserId;
 import com.idle.commonservice.base.BaseResponse;
 import com.idle.createdmissionservice.application.CreatedMissionService;
 import com.idle.createdmissionservice.application.dto.request.CreateMission;
@@ -23,8 +24,8 @@ public class CreatedMissionController {
 
     // 넘어온 날짜에 생성한 미션들 확인
     // TODO: 11/29/24 JWT 로직 확정된다면 URL 변경하기
-    @GetMapping("/temp/{user-id}")
-    public ResponseEntity<BaseResponse<List<CreatedMissionsView>>> getCreatedMissions(@PathVariable("user-id") Long userId, @RequestParam("date") LocalDate date) {
+    @GetMapping
+    public ResponseEntity<BaseResponse<List<CreatedMissionsView>>> getCreatedMissions(@UserId Long userId, @RequestParam("date") LocalDate date) {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.getMissionList(date,userId)));
     }
 
@@ -35,14 +36,14 @@ public class CreatedMissionController {
     }
 
     // 미션 생성
-    @PostMapping("/{user-id}")
-    public void createMission(@PathVariable("user-id") Long userId, @RequestBody CreateMission createMission) {
+    @PostMapping
+    public void createMission(@UserId Long userId, @RequestBody CreateMission createMission) {
         // TODO: 11/29/24 미션 만들어지는 정책 정해지면 시작
     }
 
     // 미션 인증
-    @PostMapping("/{user-id}/{created-mission-id}")
-    public ResponseEntity<BaseResponse<MissionAuthenticateView>> authMission(@PathVariable("user-id") Long userId,
+    @PostMapping("/{created-mission-id}")
+    public ResponseEntity<BaseResponse<MissionAuthenticateView>> authMission(@UserId Long userId,
                                                                              @PathVariable("created-mission-id") Long createdMissionId,
                                                                              @RequestPart("imageFile") MultipartFile imageFile) throws IOException {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.authMission(userId , createdMissionId , imageFile)));

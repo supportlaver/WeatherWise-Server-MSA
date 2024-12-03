@@ -1,12 +1,9 @@
-package com.idle.createdmissionservice.infrastructure;
+package com.idle.boardservice.infrastructure;
 
+import com.idle.boardservice.infrastructure.dto.response.UserResponse;
 import com.idle.commonservice.annotation.UserId;
-import com.idle.createdmissionservice.infrastructure.dto.request.AcquisitionExp;
-import com.idle.createdmissionservice.infrastructure.dto.response.UserAcquisitionExpResponse;
-import com.idle.createdmissionservice.infrastructure.dto.response.UserResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -17,7 +14,4 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface UserServiceClient {
     @GetMapping
     UserResponse findById(@UserId Long userId);
-
-    @PostMapping("/exp")
-    UserAcquisitionExpResponse acquisitionExp(@RequestBody AcquisitionExp req);
 }

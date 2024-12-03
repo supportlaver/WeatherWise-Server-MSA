@@ -20,4 +20,20 @@ public class Board extends BaseEntity {
 
     @Embedded
     private BoardVote boardVote;
+
+    @Embedded
+    private Location location;
+
+    @Embedded
+    private BoardInfo boardInfo;
+
+    public static Board createNewBoard(Long userId , String title , String content ,
+                           String locationName , Double latitude , Double longitude ) {
+        return Board.builder()
+                .writer(Writer.of(userId))
+                .boardInfo(BoardInfo.of(title,content))
+                .location(Location.of(locationName,latitude,longitude))
+                .boardVote(BoardVote.update(0,0))
+                .build();
+    }
 }

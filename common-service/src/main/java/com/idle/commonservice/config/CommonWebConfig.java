@@ -13,13 +13,11 @@ import java.util.List;
 public class CommonWebConfig implements WebMvcConfigurer {
     @Bean
     public UserIdArgumentResolver userIdArgumentResolver() {
-        System.out.println("CommonWebConfig.userIdArgumentResolver");
         return new UserIdArgumentResolver();
     }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        System.out.println("CommonWebConfig.addArgumentResolvers");
         resolvers.add(userIdArgumentResolver());
     }
 }

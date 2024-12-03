@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
-    @GetMapping("/{user-id}")
-    public ResponseEntity<UserResponse> findById(@PathVariable("user-id") Long userId) {
+    @GetMapping
+    public ResponseEntity<UserResponse> findById(@UserId Long userId) {
         return ResponseEntity.ok().body(userService.findById(userId));
     }
 

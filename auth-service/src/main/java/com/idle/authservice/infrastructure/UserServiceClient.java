@@ -7,6 +7,7 @@ import com.idle.authservice.presentation.dto.UserSecurityFormDto;
 import com.idle.authservice.presentation.dto.request.UpdateUserRefreshToken;
 import com.idle.authservice.presentation.dto.request.UserRequest;
 import com.idle.authservice.presentation.dto.response.UserResponse;
+import com.idle.commonservice.annotation.UserId;
 import com.idle.commonservice.auth.EProvider;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -23,8 +24,8 @@ public interface UserServiceClient {
     @PostMapping("/user-auth/refresh-token")
     void updateRefreshTokenAndLoginStatus(UpdateUserRefreshToken req);
 
-    @GetMapping("/users/{user-id}")
-    UserResponse findById(@PathVariable("user-id") Long userId);
+    @GetMapping("/users")
+    UserResponse findById(@UserId Long userId);
 
 
     @GetMapping("/user-auth/serial-id-provider")
