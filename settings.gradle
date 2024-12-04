@@ -7,4 +7,5 @@ include 'user-service'
 include 'chatting-service'
 include 'common-service'
 include 'authorization-service'
+include 'coupon-service'
 
