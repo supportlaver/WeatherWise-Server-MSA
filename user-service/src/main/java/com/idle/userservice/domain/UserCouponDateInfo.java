@@ -18,4 +18,10 @@ public class UserCouponDateInfo {
 
     @Column(name = "acquired_at")
     private LocalDateTime acquiredAt; // 획득 날짜
+
+    public static UserCouponDateInfo issuedCoupon() {
+        return UserCouponDateInfo.builder()
+                .acquiredAt(LocalDateTime.now())
+                .build();
+    }
 }

@@ -6,10 +6,7 @@ import com.idle.createdmissionservice.application.dto.response.CreatedMissionsVi
 import com.idle.createdmissionservice.application.dto.response.FileUpload;
 import com.idle.createdmissionservice.application.dto.response.MissionAuthenticateView;
 import com.idle.createdmissionservice.application.dto.response.UserData;
-import com.idle.createdmissionservice.domain.AIMissionProvider;
-import com.idle.createdmissionservice.domain.CreatedMission;
-import com.idle.createdmissionservice.domain.CreatedMissionRepository;
-import com.idle.createdmissionservice.domain.MissionAuth;
+import com.idle.createdmissionservice.domain.*;
 import com.idle.createdmissionservice.infrastructure.MissionServiceClient;
 import com.idle.createdmissionservice.infrastructure.UserServiceClient;
 import com.idle.createdmissionservice.infrastructure.dto.request.AcquisitionExp;
@@ -36,8 +33,8 @@ public class CreatedMissionService {
     private final UserServiceClient userClient;
     private final MissionServiceClient missionClient;
     private final AIMissionProvider createMissionProvider;
-    private final AIMissionProvider aiMissionProvider;
-    private final FileStorageService fileStorageService;
+    private final MissionAuthenticationService missionAuthenticationService;
+
 
     public void createMission(Long userId , CreateMission req) {
         // TODO: 11/29/24 미션을 어떻게 만들어줄것인가?
@@ -46,37 +43,27 @@ public class CreatedMissionService {
 
     @Transactional
     public MissionAuthenticateView authMission(Long userId, Long createdMissionId, MultipartFile imageFile) {
-        // createdMission 정보 가져오기
+
+        // createdMission  +  BasedMission 정보 가져오기
         CreatedMission createdMission = createdMissionRepository.findById(createdMissionId);
-
-        // FileStorage 에 저장
-        FileUpload fileUploadInfo = fileStorageService.uploadFile(imageFile);
-        createdMission.updateImageFileInfo(fileUploadInfo.getOriginalFileName() , fileUploadInfo.getUploadFileUrl());
-
-        // BasedMission 정보 가져오기
         Long missionId = createdMission.getBasedMission().getMissionId();
         MissionResponse mission = missionClient.findById(missionId);
 
+        boolean authResult = missionAuthenticationService.authenticateMission(createdMission, mission, imageFile);
 
-        // ai 서버에 미션 인증 요청
-        boolean authenticationResult = aiMissionProvider
-                .authMission(MissionAuth.of(mission.getName(), mission.getQuestion(), fileUploadInfo.getUploadFileUrl()));
-
-        // 인증 실패시
-        if (!authenticationResult) {
-            // 실패시 ImageUrl 에 Null 로 지정
-            createdMission.updateImageFileInfo(null , null);
+        if (!authResult) {
+            // 인증 실패 시 도메인 엔티티의 메서드 호출
+            createdMission.failAuthentication();
             return MissionAuthenticateView.fail();
         }
 
-        // 인증 성공시
-        // User 경험치 추가 (경험치 추가 할 때 레벨 계산)
+        // 인증 성공 시
+        createdMission.successAuthentication();
+
+        // 사용자 경험치 추가
         UserAcquisitionExpResponse res = userClient.acquisitionExp(AcquisitionExp.of(userId, mission.getExp()));
 
-        // CreatedMission 상태 변경 (미션 성공)
-        createdMission.completedMission();
-
-        return MissionAuthenticateView.success(true,mission.getExp() , res.getUserLevel() , res.getExp());
+        return MissionAuthenticateView.success(true, mission.getExp(), res.getUserLevel(), res.getExp());
     }
 
 
@@ -121,5 +108,16 @@ public class CreatedMissionService {
         UserData user = UserData.of(res.getId(), res.getNickname());
 
         return CreatedMissionsView.of(createdMission , mission , user);
+    }
+
+    public boolean getCompletedAnyMission(Long userId, LocalDate date) {
+        log.info("date = {} " , date);
+        List<CreatedMission> todayCreatedMission = createdMissionRepository.findCreatedMissionByDate(userId, date);
+        log.info("size = {} " , todayCreatedMission.size());
+        for (CreatedMission createdMission : todayCreatedMission) {
+            log.info("createdMission = {} " ,createdMission.getMissionTime());
+        }
+
+        return todayCreatedMission.stream().anyMatch(CreatedMission::isCompleted);
     }
 }

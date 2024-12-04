@@ -1,5 +1,7 @@
 package com.idle.couponservice.infrastruture;
 
+import com.idle.commonservice.exception.BaseException;
+import com.idle.commonservice.exception.ErrorCode;
 import com.idle.couponservice.domain.Coupon;
 import com.idle.couponservice.domain.CouponRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,7 @@ public class CouponRepositoryImpl implements CouponRepository {
     private final CouponJpaRepository couponRepository;
 
     @Override
-    public List<Coupon> findByCouponOwnerUserId(Long userId) {
-        return couponRepository.findByCouponOwnerUserId(userId);
+    public Coupon findById(Long couponId) {
+        return couponRepository.findById(couponId).orElseThrow(() -> new BaseException(ErrorCode.NOT_FOUND_COUPON));
     }
 }

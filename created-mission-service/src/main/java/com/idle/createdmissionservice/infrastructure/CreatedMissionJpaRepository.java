@@ -12,7 +12,7 @@ import java.util.List;
 public interface CreatedMissionJpaRepository extends JpaRepository<CreatedMission , Long> {
 
     @Query("SELECT MH FROM CreatedMission AS MH WHERE MH.challenger.userId = :userId " +
-            "AND MH.createdAt BETWEEN :#{#date.atStartOfDay()} AND :#{#date.plusDays(1).atStartOfDay()}")
+            "AND MH.createdAt >= :#{#date.atStartOfDay()} AND MH.createdAt < :#{#date.plusDays(1).atStartOfDay()}")
     List<CreatedMission> findMissionHistoryByDate(
             @Param("userId") Long userId,
             @Param("date") LocalDate date);

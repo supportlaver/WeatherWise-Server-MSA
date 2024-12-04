@@ -40,7 +40,12 @@ public class CreatedMission extends BaseEntity {
         this.imageFileInfo = ImageFileInfo.of(originalFileName, uploadFileUrl);
     }
 
-    public void completedMission() {
+    // 미션 인증 실패 처리
+    public void failAuthentication() {
+        updateImageFileInfo(null, null);
+    }
+
+    public void successAuthentication() {
         this.isCompleted = true;
     }
 }

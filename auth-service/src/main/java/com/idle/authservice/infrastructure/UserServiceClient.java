@@ -27,6 +27,8 @@ public interface UserServiceClient {
     @GetMapping("/users")
     UserResponse findById(@UserId Long userId);
 
+    @GetMapping("/users/no-token/{user-id}")
+    UserResponse findByIdNoToken(@PathVariable("user-id") Long userId);
 
     @GetMapping("/user-auth/serial-id-provider")
     Optional<UserSecurityFormDto> findBySerialIdAndProvider(

@@ -49,4 +49,9 @@ public class UserRepositoryImpl implements UserRepository {
     public User save(User user) {
         return userJpaRepository.save(user);
     }
+
+    @Override
+    public boolean hasCoupon(Long userId, Long couponId) {
+        return userJpaRepository.hasCoupon(userId , couponId);
+    }
 }

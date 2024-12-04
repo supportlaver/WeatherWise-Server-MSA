@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -39,13 +40,18 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
     // @Transactional
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-
+        log.info("userPrincipal = {} " , userPrincipal.getId());
         JwtTokenDto jwtTokenDto = jwtUtil.generateTokens(userPrincipal.getId(), userPrincipal.getRole());
         userServiceClient.updateRefreshTokenAndLoginStatus(UpdateUserRefreshToken
                 .from(userPrincipal.getId(), jwtTokenDto.getRefreshToken()));
         // userRepository.updateRefreshTokenAndLoginStatus(userPrincipal.getId(), jwtTokenDto.getRefreshToken(), true);
 
-        UserResponse res = userServiceClient.findById(userPrincipal.getId());
+
+
+        // UserResponse res = userServiceClient.findById(userPrincipal.getId());
+        UserResponse res = userServiceClient.findByIdNoToken(userPrincipal.getId());
+
+        log.info("res = {} " , res);
         // String nickname = userRepository.findByIdForLegacy(userPrincipal.getId()).map(UserEntity::getNickname).orElse("");
 
         CookieUtil.addSecureCookie(response, "refreshToken", jwtTokenDto.getRefreshToken(), jwtUtil.getWebRefreshTokenExpirationSecond());

@@ -19,8 +19,6 @@ public class CouponController {
     @GetMapping
     public void getCouponList(@UserId Long userId) {
         couponService.getCouponList(userId);
-
-
     }
 
     /**
@@ -28,5 +26,6 @@ public class CouponController {
      */
     @PostMapping("/{coupon-id}")
     public void receiveCoupon(@UserId Long userId , @PathVariable("coupon-id") Long couponId) {
+        couponService.receiveCoupon(userId , couponId);
     }
 }

@@ -1,27 +1,31 @@
 package com.idle.couponservice.domain;
 
 import com.idle.commonservice.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
+
+import static jakarta.persistence.GenerationType.*;
 
 @Entity
 @Getter
 public class Coupon extends BaseEntity {
-    @Id @Column(name = "coupon_id")
+    @Id @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "coupon_id")
     private Long id;
 
     @Embedded
     private CouponDateInfo couponDateInfo;
 
     @Embedded
-    private CouponConditionInfo couponConditionInfo;
+    private CouponDiscountInfo couponDiscountInfo;
 
     @Column(name = "coupon_name")
     private String name;
 
-    @Column(name = "coupo_is_active")
-    private boolean isActive;
+    @Column(name = "quantity")
+    private int quantity;
+
+    public boolean checkQuantity() {
+        return this.quantity - 1 > 0;
+    }
 }

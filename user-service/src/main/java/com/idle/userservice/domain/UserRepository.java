@@ -16,4 +16,5 @@ public interface UserRepository {
     Optional<User> findByNicknameAndIsDeleted(String nickname, Boolean isDeleted);
     Optional<User> findById(Long id);
     User save(User user);
+    boolean hasCoupon(Long userId, Long couponId);
 }

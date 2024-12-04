@@ -27,9 +27,17 @@ public class UserController {
         return ResponseEntity.ok().body(userService.findById(userId));
     }
 
+    @GetMapping("/no-token/{user-id}")
+    public ResponseEntity<UserResponse> findByIdNoToken(@PathVariable("user-id") Long userId) {
+        log.info("findById");
+        return ResponseEntity.ok().body(userService.findById(userId));
+    }
+
     @PostMapping
     public ResponseEntity<UserSecurityFormDto> createUser(@RequestBody UserRequest req) {
+        log.info("req = {} " ,req);
         UserSecurityFormDto res = userService.createUser(req);
+        log.info("3");
         return ResponseEntity.ok().body(res);
     }
 

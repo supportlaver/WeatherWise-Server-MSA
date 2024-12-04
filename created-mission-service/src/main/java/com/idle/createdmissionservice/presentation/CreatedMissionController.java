@@ -23,7 +23,6 @@ public class CreatedMissionController {
     private final CreatedMissionService createdMissionService;
 
     // 넘어온 날짜에 생성한 미션들 확인
-    // TODO: 11/29/24 JWT 로직 확정된다면 URL 변경하기
     @GetMapping
     public ResponseEntity<BaseResponse<List<CreatedMissionsView>>> getCreatedMissions(@UserId Long userId, @RequestParam("date") LocalDate date) {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.getMissionList(date,userId)));
@@ -47,5 +46,12 @@ public class CreatedMissionController {
                                                                              @PathVariable("created-mission-id") Long createdMissionId,
                                                                              @RequestPart("imageFile") MultipartFile imageFile) throws IOException {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.authMission(userId , createdMissionId , imageFile)));
+    }
+
+    // 해당 날짜에 하나라도 성공한 미션이 있는지 확인
+
+    @GetMapping("/completed-any-mission/{user-id}")
+    public boolean getCompletedAnyMission(@PathVariable("user-id") Long userId, @RequestParam("date") LocalDate date) {
+        return createdMissionService.getCompletedAnyMission(userId , date);
     }
 }

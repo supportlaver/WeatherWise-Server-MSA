@@ -12,6 +12,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ToString
 @Entity
 @Getter
@@ -30,6 +33,10 @@ public class User extends BaseEntity {
 
     @Convert(converter = LevelConverter.class)
     private Level level;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<UserCoupon> coupons = new ArrayList<>();
 
     @Embedded
     private Password password;
@@ -102,5 +109,15 @@ public class User extends BaseEntity {
 
     private void updateExp(int totalExp) {
         this.exp = Exp.from(totalExp);
+    }
+
+    // UserCoupon 추가
+    public void issuedCoupon(UserCoupon coupon) {
+        this.coupons.add(coupon);
+    }
+
+    // UserCoupon 삭제
+    public void removeCoupon(UserCoupon coupon) {
+        this.coupons.remove(coupon);
     }
 }
