@@ -49,7 +49,6 @@ public class CreatedMissionController {
     }
 
     // 해당 날짜에 하나라도 성공한 미션이 있는지 확인
-
     @GetMapping("/completed-any-mission/{user-id}")
     public boolean getCompletedAnyMission(@PathVariable("user-id") Long userId, @RequestParam("date") LocalDate date) {
         return createdMissionService.getCompletedAnyMission(userId , date);

@@ -111,13 +111,7 @@ public class CreatedMissionService {
     }
 
     public boolean getCompletedAnyMission(Long userId, LocalDate date) {
-        log.info("date = {} " , date);
         List<CreatedMission> todayCreatedMission = createdMissionRepository.findCreatedMissionByDate(userId, date);
-        log.info("size = {} " , todayCreatedMission.size());
-        for (CreatedMission createdMission : todayCreatedMission) {
-            log.info("createdMission = {} " ,createdMission.getMissionTime());
-        }
-
         return todayCreatedMission.stream().anyMatch(CreatedMission::isCompleted);
     }
 }
