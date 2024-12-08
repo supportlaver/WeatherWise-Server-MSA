@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CreatedMissionJpaRepository extends JpaRepository<CreatedMission , Long> {
@@ -16,4 +17,12 @@ public interface CreatedMissionJpaRepository extends JpaRepository<CreatedMissio
     List<CreatedMission> findMissionHistoryByDate(
             @Param("userId") Long userId,
             @Param("date") LocalDate date);
+
+    @Query("SELECT CASE WHEN COUNT(cm) > 0 THEN TRUE ELSE FALSE END " +
+            "FROM CreatedMission AS cm " +
+            "WHERE cm.challenger.userId = :userId " +
+            "AND cm.isCompleted = TRUE " +
+            "AND cm.createdAt >= :#{#date.toLocalDate().atStartOfDay()} " +
+            "AND cm.createdAt < :#{#date.toLocalDate().plusDays(1).atStartOfDay()}")
+    boolean hasCompletedMissionToday(@Param("userId") Long userId, @Param("date") LocalDateTime date);
 }

@@ -40,7 +40,7 @@ public enum ErrorCode {
     DUPLICATION_NICKNAME(HttpStatus.BAD_REQUEST, "4007", "중복된 닉네임입니다"),
     NOT_COMPLETED_ANY_MISSION(HttpStatus.BAD_REQUEST, "4008", "당일 성공한 미션이 하나도 존재하지 않습니다."),
     ALREADY_ISSUED_COUPON(HttpStatus.BAD_REQUEST, "4009", "이미 발급 받은 쿠폰 입니다."),
-
+    COUPON_PROCESSING_FAILED(HttpStatus.BAD_REQUEST, "4010", "쿠폰 발급에 실패했습니다."),
 
     /**
      * 401 Unauthorized: Authentication and Authorization Error

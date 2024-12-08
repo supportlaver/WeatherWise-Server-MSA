@@ -4,14 +4,16 @@ import com.idle.commonservice.exception.BaseException;
 import com.idle.commonservice.exception.ErrorCode;
 import com.idle.couponservice.domain.Coupon;
 import com.idle.couponservice.domain.CouponRepository;
-import com.idle.couponservice.infrastruture.CreatedMissionServiceClient;
-import com.idle.couponservice.infrastruture.UserServiceClient;
+import com.idle.couponservice.infrastruture.event.CouponIssuedEvent;
+import com.idle.couponservice.infrastruture.event.UserConditionCheckEvent;
+import com.idle.couponservice.infrastruture.stream.in.CheckResultListener;
+import com.idle.couponservice.infrastruture.stream.out.CouponIssuedEventPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,15 +21,16 @@ import java.util.List;
 public class CouponService {
 
     private final CouponRepository couponRepository;
-    private final CreatedMissionServiceClient createdMissionClient;
-    private final UserServiceClient userClient;
+    private final CouponIssuedEventPublisher eventPublisher;
+    private final CheckResultListener checkResultListener;
 
     public void getCouponList(Long userId) {
 
     }
 
     /**
-     * 여기서 동시성 제어 (쿠폰 수량에 맞게)
+     * 동시성 생각
+     * Aggregator 를 사용
      */
     @Transactional
     public void receiveCoupon(Long userId, Long couponId) {
@@ -37,22 +40,39 @@ public class CouponService {
             throw new BaseException(ErrorCode.EXCEEDED_QUANTITY);
         }
 
-        // 2. User 가 미션을 하나 이상 수행했는가?
-        boolean hasUserCompletedAnyMission = createdMissionClient.hasUserCompletedAnyMission(userId , LocalDate.now());
+        // 쿠폰 발급 조건 확인을 Event 로 발행
+        String correlationId = UUID.randomUUID().toString();
+        UserConditionCheckEvent userConditionCheckEvent =
+                new UserConditionCheckEvent(correlationId , userId , couponId , LocalDateTime.now());
+        eventPublisher.publishToCheckTopic(userConditionCheckEvent);
+    }
 
-        if (!hasUserCompletedAnyMission) {
-            throw new BaseException(ErrorCode.NOT_COMPLETED_ANY_MISSION);
+    /**
+     * 이거는 동시성을 생각하지 않은 경우
+     */
+    public void receiveCouponV0(Long userId, Long couponId) {
+        // 1. Coupon 의 수량이 남았는가?
+        Coupon coupon = couponRepository.findById(couponId);
+        if (!coupon.checkQuantity()) {
+            throw new BaseException(ErrorCode.EXCEEDED_QUANTITY);
         }
 
-        // 3. User 가 이미 같은 쿠폰을 발급 받았는가?
-        boolean hasSameCoupon = userClient.hasSameCoupon(userId, couponId);
+        // 쿠폰 발급 조건 확인을 Event 로 발행
+        String correlationId = UUID.randomUUID().toString();
+        UserConditionCheckEvent userConditionCheckEvent =
+                new UserConditionCheckEvent(correlationId , userId , couponId , LocalDateTime.now());
 
-        if (hasSameCoupon) {
-            throw new BaseException(ErrorCode.ALREADY_ISSUED_COUPON);
+        eventPublisher.publishToCheckTopic(userConditionCheckEvent);
+
+
+        // 5. Result 토픽 메시지 확인
+        if (!checkResultListener.isCouponProcessingSuccessful(correlationId)) {
+            // 어떤 곳에서 false 가 나왔는지에 따라 ErrorCode 확실하게 만들기
+            throw new BaseException(ErrorCode.COUPON_PROCESSING_FAILED);
         }
 
-
-        // 3. 1,2번이 모두 통과된다면 Coupon 을 발급
-        userClient.issuedCoupon(userId , couponId);
+        // 쿠폰 발급을 Event 로 발행
+        CouponIssuedEvent couponIssuedEvent = new CouponIssuedEvent(userId, couponId);
+        eventPublisher.publishToIssuedTopic(couponIssuedEvent);
     }
 }

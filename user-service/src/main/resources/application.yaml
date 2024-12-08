@@ -1,4 +1,29 @@
 spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_BINDER}
+          auto-create-topics: true
+          required-acks: ${KAFKA_REQUIRED_ACK_MODE}
+      bindings:
+        result-out-0:
+          destination: ${KAFKA_RESULT_TOPIC}
+          contentType: application/json  # JSON 형식으로 처리
+        check-in-0:
+          destination: ${KAFKA_CHECK_TOPIC}
+          contentType: application/json  # JSON 형식으로 처리
+          group: ${KAFKA_CONSUME_GROUP}
+          consumer:
+            max-attempts: ${KAFKA_CONSUME_MAX_ATTEMPTS}
+        issued-in-0:
+          destination: ${KAFKA_ISSUED_TOPIC}
+          contentType: application/json  # JSON 형식으로 처리
+          group: ${KAFKA_CONSUME_GROUP}
+          consumer:
+            max-attempts: ${KAFKA_CONSUME_MAX_ATTEMPTS}
+    function:
+      definition: check;result;issued
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${DB_URL}
