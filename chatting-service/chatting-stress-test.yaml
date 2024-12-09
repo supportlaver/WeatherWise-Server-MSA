@@ -1,8 +1,8 @@
 config:
   target: 'ws://localhost:1010/room-chat'  # WebSocket 서버 URL
   phases:
-    - duration: 2  # 테스트 지속 시간 (초)
-      arrivalRate: 1  # 초당 1개의 WebSocket 연결 생성 (연결 수 제한)
+    - duration: 10  # 테스트 지속 시간 (초)
+      arrivalRate: 10  # 초당 1개의 WebSocket 연결 생성 (연결 수 제한)
 
 payload:
   path: nicknames.csv
@@ -14,7 +14,7 @@ scenarios:
       - loop:
           - send:
               name: "cian"
-              message: "Artillery"
+              message: nickName
               room: "Test"
               when: "2024-11-29T21:55:14.088113+09:00"
         count: 10
