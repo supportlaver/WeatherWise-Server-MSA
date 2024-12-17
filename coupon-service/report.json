@@ -1,0 +1,1378 @@
+{
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.coupon event": 18000,
+      "vusers.created": 18000,
+      "http.requests": 18000,
+      "http.codes.200": 5678,
+      "http.responses": 11579,
+      "http.downloaded_bytes": 531090,
+      "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.200": 5678,
+      "vusers.failed": 6421,
+      "vusers.completed": 11579,
+      "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.errors.ETIMEDOUT": 6421,
+      "errors.ETIMEDOUT": 6421,
+      "http.codes.409": 5901,
+      "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.409": 5901
+    },
+    "rates": {
+      "http.request_rate": 195
+    },
+    "firstCounterAt": 1734437668833,
+    "firstHistogramAt": 1734437669213,
+    "lastCounterAt": 1734437759189,
+    "lastHistogramAt": 1734437759189,
+    "firstMetricAt": 1734437668833,
+    "lastMetricAt": 1734437759189,
+    "period": 1734437750000,
+    "summaries": {
+      "http.response_time": {
+        "min": 1,
+        "max": 9997,
+        "count": 11579,
+        "mean": 2494.6,
+        "p50": 468.8,
+        "median": 468.8,
+        "p75": 4770.6,
+        "p90": 7865.6,
+        "p95": 8868.4,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "http.response_time.2xx": {
+        "min": 5,
+        "max": 9997,
+        "count": 5678,
+        "mean": 3527.1,
+        "p50": 2725,
+        "median": 2725,
+        "p75": 6439.7,
+        "p90": 8352,
+        "p95": 9047.6,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+        "min": 1,
+        "max": 9997,
+        "count": 11579,
+        "mean": 2494.6,
+        "p50": 468.8,
+        "median": 468.8,
+        "p75": 4770.6,
+        "p90": 7865.6,
+        "p95": 8868.4,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "vusers.session_length": {
+        "min": 2.4,
+        "max": 10000.3,
+        "count": 11579,
+        "mean": 2497,
+        "p50": 478.3,
+        "median": 478.3,
+        "p75": 4770.6,
+        "p90": 7865.6,
+        "p95": 8868.4,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "http.response_time.4xx": {
+        "min": 1,
+        "max": 9981,
+        "count": 5901,
+        "mean": 1501.2,
+        "p50": 3,
+        "median": 3,
+        "p75": 1587.9,
+        "p90": 6702.6,
+        "p95": 8352,
+        "p99": 9607.1,
+        "p999": 9999.2
+      }
+    },
+    "histograms": {
+      "http.response_time": {
+        "min": 1,
+        "max": 9997,
+        "count": 11579,
+        "mean": 2494.6,
+        "p50": 468.8,
+        "median": 468.8,
+        "p75": 4770.6,
+        "p90": 7865.6,
+        "p95": 8868.4,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "http.response_time.2xx": {
+        "min": 5,
+        "max": 9997,
+        "count": 5678,
+        "mean": 3527.1,
+        "p50": 2725,
+        "median": 2725,
+        "p75": 6439.7,
+        "p90": 8352,
+        "p95": 9047.6,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+        "min": 1,
+        "max": 9997,
+        "count": 11579,
+        "mean": 2494.6,
+        "p50": 468.8,
+        "median": 468.8,
+        "p75": 4770.6,
+        "p90": 7865.6,
+        "p95": 8868.4,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "vusers.session_length": {
+        "min": 2.4,
+        "max": 10000.3,
+        "count": 11579,
+        "mean": 2497,
+        "p50": 478.3,
+        "median": 478.3,
+        "p75": 4770.6,
+        "p90": 7865.6,
+        "p95": 8868.4,
+        "p99": 9801.2,
+        "p999": 9999.2
+      },
+      "http.response_time.4xx": {
+        "min": 1,
+        "max": 9981,
+        "count": 5901,
+        "mean": 1501.2,
+        "p50": 3,
+        "median": 3,
+        "p75": 1587.9,
+        "p90": 6702.6,
+        "p95": 8352,
+        "p99": 9607.1,
+        "p999": 9999.2
+      }
+    }
+  },
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 149,
+        "vusers.created": 149,
+        "http.requests": 149,
+        "http.codes.200": 101,
+        "http.responses": 101,
+        "http.downloaded_bytes": 0,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.200": 101,
+        "vusers.failed": 0,
+        "vusers.completed": 101
+      },
+      "rates": {
+        "http.request_rate": 145
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437668833,
+      "firstHistogramAt": 1734437669213,
+      "lastCounterAt": 1734437669999,
+      "lastHistogramAt": 1734437669995,
+      "firstMetricAt": 1734437668833,
+      "lastMetricAt": 1734437669999,
+      "period": "1734437660000",
+      "summaries": {
+        "http.response_time": {
+          "min": 66,
+          "max": 388,
+          "count": 101,
+          "mean": 226.5,
+          "p50": 214.9,
+          "median": 214.9,
+          "p75": 257.3,
+          "p90": 308,
+          "p95": 314.2,
+          "p99": 361.5,
+          "p999": 361.5
+        },
+        "http.response_time.2xx": {
+          "min": 66,
+          "max": 388,
+          "count": 101,
+          "mean": 226.5,
+          "p50": 214.9,
+          "median": 214.9,
+          "p75": 257.3,
+          "p90": 308,
+          "p95": 314.2,
+          "p99": 361.5,
+          "p999": 361.5
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 66,
+          "max": 388,
+          "count": 101,
+          "mean": 226.5,
+          "p50": 214.9,
+          "median": 214.9,
+          "p75": 257.3,
+          "p90": 308,
+          "p95": 314.2,
+          "p99": 361.5,
+          "p999": 361.5
+        },
+        "vusers.session_length": {
+          "min": 69,
+          "max": 400.9,
+          "count": 101,
+          "mean": 231.7,
+          "p50": 219.2,
+          "median": 219.2,
+          "p75": 262.5,
+          "p90": 314.2,
+          "p95": 327.1,
+          "p99": 368.8,
+          "p999": 368.8
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 66,
+          "max": 388,
+          "count": 101,
+          "mean": 226.5,
+          "p50": 214.9,
+          "median": 214.9,
+          "p75": 257.3,
+          "p90": 308,
+          "p95": 314.2,
+          "p99": 361.5,
+          "p999": 361.5
+        },
+        "http.response_time.2xx": {
+          "min": 66,
+          "max": 388,
+          "count": 101,
+          "mean": 226.5,
+          "p50": 214.9,
+          "median": 214.9,
+          "p75": 257.3,
+          "p90": 308,
+          "p95": 314.2,
+          "p99": 361.5,
+          "p999": 361.5
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 66,
+          "max": 388,
+          "count": 101,
+          "mean": 226.5,
+          "p50": 214.9,
+          "median": 214.9,
+          "p75": 257.3,
+          "p90": 308,
+          "p95": 314.2,
+          "p99": 361.5,
+          "p999": 361.5
+        },
+        "vusers.session_length": {
+          "min": 69,
+          "max": 400.9,
+          "count": 101,
+          "mean": 231.7,
+          "p50": 219.2,
+          "median": 219.2,
+          "p75": 262.5,
+          "p90": 314.2,
+          "p95": 327.1,
+          "p99": 368.8,
+          "p999": 368.8
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 1652,
+        "vusers.created": 1652,
+        "http.requests": 1652,
+        "http.codes.200": 1585,
+        "http.responses": 1585,
+        "http.downloaded_bytes": 0,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.200": 1585,
+        "vusers.failed": 0,
+        "vusers.completed": 1585
+      },
+      "rates": {
+        "http.request_rate": 167
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437670002,
+      "firstHistogramAt": 1734437670011,
+      "lastCounterAt": 1734437679995,
+      "lastHistogramAt": 1734437679995,
+      "firstMetricAt": 1734437670002,
+      "lastMetricAt": 1734437679995,
+      "period": "1734437670000",
+      "summaries": {
+        "http.response_time": {
+          "min": 5,
+          "max": 862,
+          "count": 1585,
+          "mean": 229.7,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 468.8,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 820.7
+        },
+        "http.response_time.2xx": {
+          "min": 5,
+          "max": 862,
+          "count": 1585,
+          "mean": 229.7,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 468.8,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 820.7
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 5,
+          "max": 862,
+          "count": 1585,
+          "mean": 229.7,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 468.8,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 820.7
+        },
+        "vusers.session_length": {
+          "min": 6.1,
+          "max": 864.4,
+          "count": 1585,
+          "mean": 231.9,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 478.3,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 837.3
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 5,
+          "max": 862,
+          "count": 1585,
+          "mean": 229.7,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 468.8,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 820.7
+        },
+        "http.response_time.2xx": {
+          "min": 5,
+          "max": 862,
+          "count": 1585,
+          "mean": 229.7,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 468.8,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 820.7
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 5,
+          "max": 862,
+          "count": 1585,
+          "mean": 229.7,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 468.8,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 820.7
+        },
+        "vusers.session_length": {
+          "min": 6.1,
+          "max": 864.4,
+          "count": 1585,
+          "mean": 231.9,
+          "p50": 252.2,
+          "median": 252.2,
+          "p75": 415.8,
+          "p90": 478.3,
+          "p95": 497.8,
+          "p99": 528.6,
+          "p999": 837.3
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 3000,
+        "vusers.created": 3000,
+        "http.requests": 3000,
+        "http.codes.200": 1818,
+        "http.responses": 1818,
+        "http.downloaded_bytes": 0,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.200": 1818,
+        "vusers.failed": 0,
+        "vusers.completed": 1818
+      },
+      "rates": {
+        "http.request_rate": 300
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437680000,
+      "firstHistogramAt": 1734437680001,
+      "lastCounterAt": 1734437689995,
+      "lastHistogramAt": 1734437689994,
+      "firstMetricAt": 1734437680000,
+      "lastMetricAt": 1734437689995,
+      "period": "1734437680000",
+      "summaries": {
+        "http.response_time": {
+          "min": 52,
+          "max": 4921,
+          "count": 1818,
+          "mean": 2280,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        },
+        "http.response_time.2xx": {
+          "min": 52,
+          "max": 4921,
+          "count": 1818,
+          "mean": 2280,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 52,
+          "max": 4921,
+          "count": 1818,
+          "mean": 2280,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        },
+        "vusers.session_length": {
+          "min": 54.4,
+          "max": 4923.6,
+          "count": 1818,
+          "mean": 2282.3,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 52,
+          "max": 4921,
+          "count": 1818,
+          "mean": 2280,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        },
+        "http.response_time.2xx": {
+          "min": 52,
+          "max": 4921,
+          "count": 1818,
+          "mean": 2280,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 52,
+          "max": 4921,
+          "count": 1818,
+          "mean": 2280,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        },
+        "vusers.session_length": {
+          "min": 54.4,
+          "max": 4923.6,
+          "count": 1818,
+          "mean": 2282.3,
+          "p50": 2231,
+          "median": 2231,
+          "p75": 3197.8,
+          "p90": 3828.5,
+          "p95": 4065.2,
+          "p99": 4316.6,
+          "p999": 4867
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 3000,
+        "vusers.created": 3000,
+        "http.requests": 3000,
+        "http.codes.200": 1705,
+        "http.responses": 1705,
+        "http.downloaded_bytes": 0,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.200": 1705,
+        "vusers.failed": 0,
+        "vusers.completed": 1705
+      },
+      "rates": {
+        "http.request_rate": 300
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437690000,
+      "firstHistogramAt": 1734437690000,
+      "lastCounterAt": 1734437699995,
+      "lastHistogramAt": 1734437699993,
+      "firstMetricAt": 1734437690000,
+      "lastMetricAt": 1734437699995,
+      "period": "1734437690000",
+      "summaries": {
+        "http.response_time": {
+          "min": 3779,
+          "max": 8638,
+          "count": 1705,
+          "mean": 6536.9,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        },
+        "http.response_time.2xx": {
+          "min": 3779,
+          "max": 8638,
+          "count": 1705,
+          "mean": 6536.9,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 3779,
+          "max": 8638,
+          "count": 1705,
+          "mean": 6536.9,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        },
+        "vusers.session_length": {
+          "min": 3783.8,
+          "max": 8639.4,
+          "count": 1705,
+          "mean": 6539.1,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 3779,
+          "max": 8638,
+          "count": 1705,
+          "mean": 6536.9,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        },
+        "http.response_time.2xx": {
+          "min": 3779,
+          "max": 8638,
+          "count": 1705,
+          "mean": 6536.9,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 3779,
+          "max": 8638,
+          "count": 1705,
+          "mean": 6536.9,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        },
+        "vusers.session_length": {
+          "min": 3783.8,
+          "max": 8639.4,
+          "count": 1705,
+          "mean": 6539.1,
+          "p50": 6702.6,
+          "median": 6702.6,
+          "p75": 7557.1,
+          "p90": 8186.6,
+          "p95": 8352,
+          "p99": 8520.7,
+          "p999": 8692.8
+        }
+      }
+    },
+    {
+      "counters": {
+        "http.codes.200": 469,
+        "http.responses": 469,
+        "http.downloaded_bytes": 0,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.200": 469,
+        "vusers.failed": 2123,
+        "vusers.completed": 469,
+        "vusers.created_by_name.coupon event": 2848,
+        "vusers.created": 2848,
+        "http.requests": 2848,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.errors.ETIMEDOUT": 2123,
+        "errors.ETIMEDOUT": 2123
+      },
+      "rates": {
+        "http.request_rate": 286
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437700000,
+      "firstHistogramAt": 1734437700002,
+      "lastCounterAt": 1734437709998,
+      "lastHistogramAt": 1734437704037,
+      "firstMetricAt": 1734437700000,
+      "lastMetricAt": 1734437709998,
+      "period": "1734437700000",
+      "summaries": {
+        "http.response_time": {
+          "min": 8289,
+          "max": 9997,
+          "count": 469,
+          "mean": 9274.3,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.2xx": {
+          "min": 8289,
+          "max": 9997,
+          "count": 469,
+          "mean": 9274.3,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 8289,
+          "max": 9997,
+          "count": 469,
+          "mean": 9274.3,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "vusers.session_length": {
+          "min": 8291.7,
+          "max": 10000.3,
+          "count": 469,
+          "mean": 9277.1,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 8289,
+          "max": 9997,
+          "count": 469,
+          "mean": 9274.3,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.2xx": {
+          "min": 8289,
+          "max": 9997,
+          "count": 469,
+          "mean": 9274.3,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 8289,
+          "max": 9997,
+          "count": 469,
+          "mean": 9274.3,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "vusers.session_length": {
+          "min": 8291.7,
+          "max": 10000.3,
+          "count": 469,
+          "mean": 9277.1,
+          "p50": 9230.4,
+          "median": 9230.4,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        }
+      }
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.errors.ETIMEDOUT": 2848,
+        "errors.ETIMEDOUT": 2848,
+        "vusers.failed": 2848,
+        "vusers.created_by_name.coupon event": 1500,
+        "vusers.created": 1500,
+        "http.requests": 1500
+      },
+      "rates": {
+        "http.request_rate": 150
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437710001,
+      "lastCounterAt": 1734437719998,
+      "firstMetricAt": 1734437710001,
+      "lastMetricAt": 1734437719998,
+      "period": "1734437710000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 1500,
+        "vusers.created": 1500,
+        "http.requests": 1498,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.errors.ETIMEDOUT": 1450,
+        "errors.ETIMEDOUT": 1450,
+        "vusers.failed": 1450,
+        "http.codes.409": 310,
+        "http.responses": 310,
+        "http.downloaded_bytes": 27900,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.409": 310,
+        "vusers.completed": 310
+      },
+      "rates": {
+        "http.request_rate": 150
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437720001,
+      "firstHistogramAt": 1734437729425,
+      "lastCounterAt": 1734437729999,
+      "lastHistogramAt": 1734437729997,
+      "firstMetricAt": 1734437720001,
+      "lastMetricAt": 1734437729999,
+      "period": "1734437720000",
+      "summaries": {
+        "http.response_time": {
+          "min": 7031,
+          "max": 9981,
+          "count": 310,
+          "mean": 8948.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.4xx": {
+          "min": 7031,
+          "max": 9981,
+          "count": 310,
+          "mean": 8948.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 7031,
+          "max": 9981,
+          "count": 310,
+          "mean": 8948.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "vusers.session_length": {
+          "min": 7034.1,
+          "max": 9983.2,
+          "count": 310,
+          "mean": 8951.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 7031,
+          "max": 9981,
+          "count": 310,
+          "mean": 8948.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.4xx": {
+          "min": 7031,
+          "max": 9981,
+          "count": 310,
+          "mean": 8948.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 7031,
+          "max": 9981,
+          "count": 310,
+          "mean": 8948.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "vusers.session_length": {
+          "min": 7034.1,
+          "max": 9983.2,
+          "count": 310,
+          "mean": 8951.5,
+          "p50": 9047.6,
+          "median": 9047.6,
+          "p75": 9607.1,
+          "p90": 9801.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 1500,
+        "vusers.created": 1500,
+        "http.requests": 1502,
+        "http.codes.409": 2739,
+        "http.responses": 2739,
+        "http.downloaded_bytes": 246510,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.409": 2739,
+        "vusers.failed": 0,
+        "vusers.completed": 2739
+      },
+      "rates": {
+        "http.request_rate": 150
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437730000,
+      "firstHistogramAt": 1734437730009,
+      "lastCounterAt": 1734437739998,
+      "lastHistogramAt": 1734437739998,
+      "firstMetricAt": 1734437730000,
+      "lastMetricAt": 1734437739998,
+      "period": "1734437730000",
+      "summaries": {
+        "http.response_time": {
+          "min": 1,
+          "max": 9980,
+          "count": 2739,
+          "mean": 2217.6,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        },
+        "http.response_time.4xx": {
+          "min": 1,
+          "max": 9980,
+          "count": 2739,
+          "mean": 2217.6,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 1,
+          "max": 9980,
+          "count": 2739,
+          "mean": 2217.6,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        },
+        "vusers.session_length": {
+          "min": 2.7,
+          "max": 9982.2,
+          "count": 2739,
+          "mean": 2220.2,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 1,
+          "max": 9980,
+          "count": 2739,
+          "mean": 2217.6,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        },
+        "http.response_time.4xx": {
+          "min": 1,
+          "max": 9980,
+          "count": 2739,
+          "mean": 2217.6,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 1,
+          "max": 9980,
+          "count": 2739,
+          "mean": 2217.6,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        },
+        "vusers.session_length": {
+          "min": 2.7,
+          "max": 9982.2,
+          "count": 2739,
+          "mean": 2220.2,
+          "p50": 340.4,
+          "median": 340.4,
+          "p75": 4403.8,
+          "p90": 6702.6,
+          "p95": 7709.8,
+          "p99": 8868.4,
+          "p999": 9801.2
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 1500,
+        "vusers.created": 1500,
+        "http.requests": 1500,
+        "http.codes.409": 1499,
+        "http.responses": 1499,
+        "http.downloaded_bytes": 134910,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.409": 1499,
+        "vusers.failed": 0,
+        "vusers.completed": 1499
+      },
+      "rates": {
+        "http.request_rate": 150
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437740001,
+      "firstHistogramAt": 1734437740001,
+      "lastCounterAt": 1734437749998,
+      "lastHistogramAt": 1734437749992,
+      "firstMetricAt": 1734437740001,
+      "lastMetricAt": 1734437749998,
+      "period": "1734437740000",
+      "summaries": {
+        "http.response_time": {
+          "min": 1,
+          "max": 60,
+          "count": 1499,
+          "mean": 4.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 4,
+          "p90": 6,
+          "p95": 8.9,
+          "p99": 24.8,
+          "p999": 48.9
+        },
+        "http.response_time.4xx": {
+          "min": 1,
+          "max": 60,
+          "count": 1499,
+          "mean": 4.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 4,
+          "p90": 6,
+          "p95": 8.9,
+          "p99": 24.8,
+          "p999": 48.9
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 1,
+          "max": 60,
+          "count": 1499,
+          "mean": 4.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 4,
+          "p90": 6,
+          "p95": 8.9,
+          "p99": 24.8,
+          "p999": 48.9
+        },
+        "vusers.session_length": {
+          "min": 2.4,
+          "max": 115.9,
+          "count": 1499,
+          "mean": 6.3,
+          "p50": 4.4,
+          "median": 4.4,
+          "p75": 5.4,
+          "p90": 9.3,
+          "p95": 14.4,
+          "p99": 46.1,
+          "p999": 92.8
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 1,
+          "max": 60,
+          "count": 1499,
+          "mean": 4.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 4,
+          "p90": 6,
+          "p95": 8.9,
+          "p99": 24.8,
+          "p999": 48.9
+        },
+        "http.response_time.4xx": {
+          "min": 1,
+          "max": 60,
+          "count": 1499,
+          "mean": 4.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 4,
+          "p90": 6,
+          "p95": 8.9,
+          "p99": 24.8,
+          "p999": 48.9
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 1,
+          "max": 60,
+          "count": 1499,
+          "mean": 4.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 4,
+          "p90": 6,
+          "p95": 8.9,
+          "p99": 24.8,
+          "p999": 48.9
+        },
+        "vusers.session_length": {
+          "min": 2.4,
+          "max": 115.9,
+          "count": 1499,
+          "mean": 6.3,
+          "p50": 4.4,
+          "median": 4.4,
+          "p75": 5.4,
+          "p90": 9.3,
+          "p95": 14.4,
+          "p99": 46.1,
+          "p999": 92.8
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.coupon event": 1351,
+        "vusers.created": 1351,
+        "http.requests": 1351,
+        "http.codes.409": 1353,
+        "http.responses": 1353,
+        "http.downloaded_bytes": 121770,
+        "plugins.metrics-by-endpoint./test/api/coupons/{{ userId }}/1.codes.409": 1353,
+        "vusers.failed": 0,
+        "vusers.completed": 1353
+      },
+      "rates": {
+        "http.request_rate": 150
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1734437750000,
+      "firstHistogramAt": 1734437750000,
+      "lastCounterAt": 1734437759189,
+      "lastHistogramAt": 1734437759189,
+      "firstMetricAt": 1734437750000,
+      "lastMetricAt": 1734437759189,
+      "period": "1734437750000",
+      "summaries": {
+        "http.response_time": {
+          "min": 1,
+          "max": 39,
+          "count": 1353,
+          "mean": 3.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 4,
+          "p95": 6,
+          "p99": 10.9,
+          "p999": 34.8
+        },
+        "http.response_time.4xx": {
+          "min": 1,
+          "max": 39,
+          "count": 1353,
+          "mean": 3.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 4,
+          "p95": 6,
+          "p99": 10.9,
+          "p999": 34.8
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 1,
+          "max": 39,
+          "count": 1353,
+          "mean": 3.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 4,
+          "p95": 6,
+          "p99": 10.9,
+          "p999": 34.8
+        },
+        "vusers.session_length": {
+          "min": 2.5,
+          "max": 53.4,
+          "count": 1353,
+          "mean": 4.8,
+          "p50": 4.1,
+          "median": 4.1,
+          "p75": 4.7,
+          "p90": 6.1,
+          "p95": 8.9,
+          "p99": 15,
+          "p999": 51.9
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 1,
+          "max": 39,
+          "count": 1353,
+          "mean": 3.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 4,
+          "p95": 6,
+          "p99": 10.9,
+          "p999": 34.8
+        },
+        "http.response_time.4xx": {
+          "min": 1,
+          "max": 39,
+          "count": 1353,
+          "mean": 3.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 4,
+          "p95": 6,
+          "p99": 10.9,
+          "p999": 34.8
+        },
+        "plugins.metrics-by-endpoint.response_time./test/api/coupons/{{ userId }}/1": {
+          "min": 1,
+          "max": 39,
+          "count": 1353,
+          "mean": 3.1,
+          "p50": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 4,
+          "p95": 6,
+          "p99": 10.9,
+          "p999": 34.8
+        },
+        "vusers.session_length": {
+          "min": 2.5,
+          "max": 53.4,
+          "count": 1353,
+          "mean": 4.8,
+          "p50": 4.1,
+          "median": 4.1,
+          "p75": 4.7,
+          "p90": 6.1,
+          "p95": 8.9,
+          "p99": 15,
+          "p999": 51.9
+        }
+      }
+    }
+  ]
+}

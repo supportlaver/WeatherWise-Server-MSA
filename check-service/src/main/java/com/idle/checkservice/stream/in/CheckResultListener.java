@@ -6,6 +6,7 @@ import com.idle.checkservice.event.DailyMissionVerifiedResultEvent;
 import com.idle.checkservice.event.UserCheckResultEvent;
 import com.idle.checkservice.stream.out.CouponIssuedEventPublisher;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -14,15 +15,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
-@Component
+@Component @Slf4j
 @RequiredArgsConstructor
 public class CheckResultListener {
 
     /**
      * Thread-safe ConcurrentHashMap을 사용하여 correlationId 별 AggregatedResult를 관리
      */
-    // private final Map<String, AggregatedResult> results = new ConcurrentHashMap<>();
-    private final Map<String, AggregatedResult> results = new HashMap<>();
+    private final Map<String, AggregatedResult> results = new ConcurrentHashMap<>();
+    // private final Map<String, AggregatedResult> results = new HashMap<>();
     private final CouponIssuedEventPublisher couponPublisher;
 
     /**
@@ -31,10 +32,6 @@ public class CheckResultListener {
     @Bean
     public Consumer<UserCheckResultEvent> resultUser() {
         return message -> {
-            System.out.println("resultUser-jiwon");
-            System.out.println(message.isUserCheckResult());
-            System.out.println(message.getCouponId());
-            System.out.println(message.getCorrelationId());
             handleUserCheckResult(message);
         };
     }
@@ -42,10 +39,6 @@ public class CheckResultListener {
     @Bean
     public Consumer<DailyMissionVerifiedResultEvent> resultCreatedMission() {
         return message -> {
-            System.out.println("resultCreatedMission-jiwon");
-            System.out.println(message.isDailyMissionVerifiedResult());
-            System.out.println(message.getCouponId());
-            System.out.println(message.getCorrelationId());
             handleDailyMissionVerifiedResult(message);
         };
     }
@@ -66,6 +59,12 @@ public class CheckResultListener {
     }
 
     /**
+     * 어쩔 수 없이 그냥 ㄱㄱ
+     * HTTP 랑 EVENT 대충 비교 해보고
+     * 모니터링 강의 듣다가 가기
+     */
+
+    /**
      * DailyMissionVerifiedResultEvent 처리 메서드
      */
     private void handleDailyMissionVerifiedResult(DailyMissionVerifiedResultEvent event) {
@@ -81,14 +80,14 @@ public class CheckResultListener {
     }
 
     private void checkAndPublishCoupon(AggregatedResult result, String correlationId) {
-        System.out.println("result = " + result);
         if (result.isAllConditionsMet()) {
             // 모든 조건이 충족되면 쿠폰 발행 이벤트 발행
-            System.out.println("조건 부합");
+            log.info("[COUPON_ISSUED] 쿠폰 조건 부합 (이벤트 발행)");
             couponPublisher.publishCouponIssuedEvent(new CouponIssuedEvent(result.getUserId(), result.getCouponId()));
-
             // 상태 삭제
             results.remove(correlationId);
         }
+
+        log.error("[FAIL_COUPON_ISSUED] 쿠폰 조건 부적합 (이벤트 발행 실패)");
     }
 }
