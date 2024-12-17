@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/coupons")
+@RequestMapping("/test/api/coupons")
 public class CouponController {
     private final CouponService couponService;
 

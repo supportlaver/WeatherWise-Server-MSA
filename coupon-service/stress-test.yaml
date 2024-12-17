@@ -1,9 +1,14 @@
 config:
-  target: 'http://localhost:8085/api/coupons'
+  target: 'http://localhost:8085/test/api/coupons' # 쿠폰 지급 API
   phases:
-    - duration: 30  # 총 실행 시간 (30초)
-      arrivalRate: 100
-      name: 'Coupon Event Load Test'
+    - duration: 10          # 시작 10초 동안
+      arrivalRate: 150      # 초당 30명의 요청 (초기 트래픽 급증)
+      name: 'Warm-up Phase'
+    - duration: 30          # 다음 30초 동안
+      arrivalRate: 300      # 초당 120명의 요청 (최대 트래픽 구간)
+      name: 'Peak Traffic Phase'
+    - duration: 50          # 남은 50초 동안
+      arrivalRate: 150      # 초당 50명의 요청 (트래픽 감소 및 재시도)
   payload:
     path: "user_ids.csv"
     fields:

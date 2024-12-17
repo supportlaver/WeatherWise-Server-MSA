@@ -32,10 +32,9 @@ public class CouponService {
     @Transactional
     public void receiveCoupon(Long userId, Long couponId) {
         // 1. Coupon 의 수량이 남았는가?
-        Coupon coupon = couponRepository.findById(couponId);
-        if (!coupon.checkQuantity()) {
-            throw new BaseException(ErrorCode.EXCEEDED_QUANTITY);
-        }
+        // Coupon coupon = couponRepository.findById(couponId);
+        Coupon coupon = couponRepository.findByIdForLock(couponId);
+        coupon.issue();
 
         // 쿠폰 발급 조건 확인을 Event 로 발행
         String correlationId = UUID.randomUUID().toString();
