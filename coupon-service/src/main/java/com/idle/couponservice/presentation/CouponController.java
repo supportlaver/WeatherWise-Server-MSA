@@ -23,6 +23,8 @@ public class CouponController {
 
     /**
      * Coupon 발급 받기
+     * V0 : Coupon 에서 모두 처리
+     * V1 : Aggregator 를 사용하여 처리
      */
     @PostMapping("/{coupon-id}")
     public void receiveCoupon(@UserId Long userId , @PathVariable("coupon-id") Long couponId) {
