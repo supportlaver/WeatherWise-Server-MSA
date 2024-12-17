@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      nodeSelector:
+        node-role: backend
+      containers:
+        - name: auth-service
+          image: kangwoobin/auth-service:latest  # auth-service 전용 이미지
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: app-config
+            - secretRef:
+                name: app-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  type: ClusterIP  # 내부 통신을 위해 ClusterIP 사용
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: auth-service

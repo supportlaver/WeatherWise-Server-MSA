@@ -1,5 +1,54 @@
-# Ignore Gradle project-specific cache directory
+HELP.md
 .gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+application-local.yml
+!**/src/main/**/build/
+!**/src/test/**/build/
+.DS_Store
 
-# Ignore Gradle build output directory
-build
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+.env
+configmap.yaml
+secret.yaml
+mysql-secret.yaml
+spring-deployment.yaml
+application.yaml
+client.properties
+get_helm.sh
+promtail-linux-amd64.zip
+current-test.yaml
+report.html
+report.json
+user_ids.csv
+
