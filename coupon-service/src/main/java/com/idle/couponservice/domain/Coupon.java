@@ -1,6 +1,8 @@
 package com.idle.couponservice.domain;
 
 import com.idle.commonservice.base.BaseEntity;
+import com.idle.commonservice.exception.BaseException;
+import com.idle.commonservice.exception.ErrorCode;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -27,5 +29,12 @@ public class Coupon extends BaseEntity {
 
     public boolean checkQuantity() {
         return this.quantity - 1 > 0;
+    }
+
+    public void issue() {
+        if (this.quantity <= 0) {
+            throw new BaseException(ErrorCode.EXCEEDED_QUANTITY);
+        }
+        this.quantity--;
     }
 }
