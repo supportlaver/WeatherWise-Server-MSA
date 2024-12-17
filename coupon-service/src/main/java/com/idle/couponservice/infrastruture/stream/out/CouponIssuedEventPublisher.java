@@ -46,7 +46,6 @@ public class CouponIssuedEventPublisher {
     }
 
     public void publishToCheckTopic(UserConditionCheckEvent event) {
-        log.info("publishToCheckTopic");
         checkSink.tryEmitNext(event);
     }
 

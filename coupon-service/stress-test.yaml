@@ -1,0 +1,15 @@
+config:
+  target: 'http://localhost:8085/api/coupons'
+  phases:
+    - duration: 30  # 총 실행 시간 (30초)
+      arrivalRate: 100
+      name: 'Coupon Event Load Test'
+  payload:
+    path: "user_ids.csv"
+    fields:
+      - "userId"
+scenarios:
+  - name: "coupon event"
+    flow:
+      - post:
+          url: "/{{ userId }}/1"

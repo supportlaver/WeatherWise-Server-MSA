@@ -4,10 +4,11 @@ import com.idle.commonservice.annotation.UserId;
 import com.idle.commonservice.base.BaseResponse;
 import com.idle.couponservice.application.CouponService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/coupons")
 public class CouponController {
@@ -26,8 +27,14 @@ public class CouponController {
      * V0 : Coupon 에서 모두 처리
      * V1 : Aggregator 를 사용하여 처리
      */
-    @PostMapping("/{coupon-id}")
+    /*@PostMapping("/{coupon-id}")
     public void receiveCoupon(@UserId Long userId , @PathVariable("coupon-id") Long couponId) {
+        couponService.receiveCoupon(userId , couponId);
+    }*/
+
+    @PostMapping("/{user-id}/{coupon-id}")
+    public void receiveCoupon(@PathVariable("user-id") Long userId , @PathVariable("coupon-id") Long couponId) {
+        log.info("[RECEIVE_COUPON] : Request UserId = {} " , userId);
         couponService.receiveCoupon(userId , couponId);
     }
 }

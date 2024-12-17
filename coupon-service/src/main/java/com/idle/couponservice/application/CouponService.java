@@ -7,7 +7,6 @@ import com.idle.couponservice.domain.CouponIssuedService;
 import com.idle.couponservice.domain.CouponRepository;
 import com.idle.couponservice.infrastruture.event.CouponIssuedEvent;
 import com.idle.couponservice.infrastruture.event.UserConditionCheckEvent;
-import com.idle.couponservice.infrastruture.stream.in.CheckResultListener;
 import com.idle.couponservice.infrastruture.stream.out.CouponIssuedEventPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ public class CouponService {
 
     private final CouponRepository couponRepository;
     private final CouponIssuedEventPublisher eventPublisher;
-    private final CheckResultListener checkResultListener;
 
 
     public void getCouponList(Long userId) {
