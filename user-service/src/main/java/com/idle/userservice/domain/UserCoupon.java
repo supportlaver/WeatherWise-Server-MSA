@@ -32,7 +32,7 @@ public class UserCoupon extends BaseEntity {
     @Embedded
     private UserCouponDateInfo userCouponDateInfo;
 
-    public static UserCoupon issuedCoupon(Long couponId , Long userId) {
+    public static UserCoupon issuedCoupon(Long userId , Long couponId) {
         return UserCoupon.builder()
                 .couponId(CouponId.builder().couponId(couponId).build())
                 .userId(userId)
