@@ -34,4 +34,20 @@ public class BoardController {
     public BoardListResponse getBoardsWithRadius(@RequestParam double latitude, @RequestParam double longitude) {
         return boardService.getBoardsWithRadius(latitude, longitude);
     }
+
+    /**
+     * 테스트 하는 경우에는 XXXWithoutApiGateway 를 사용
+     */
+
+    // 게시글 생성
+    @PostMapping("/{user-id}")
+    public BoardResponse createBoardWithoutApiGateway(@PathVariable("user-id") Long userId, @RequestBody BoardRequest boardRequest) {
+        return boardService.createBoard(userId, boardRequest);
+    }
+
+    // 게시글 단일 조회
+    @GetMapping(path = "/{board-id}")
+    public BoardResponse getBoardByIdWithoutApiGateway(@PathVariable("board-id") Long boardId) {
+        return boardService.getBoardById(boardId);
+    }
 }

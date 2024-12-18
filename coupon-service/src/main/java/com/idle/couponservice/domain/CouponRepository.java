@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface CouponRepository {
     Coupon findById(Long couponId);
+    Coupon findByIdForLock(Long couponId);
 }
