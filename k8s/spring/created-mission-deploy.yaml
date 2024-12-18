@@ -18,7 +18,7 @@ spec:
         - name: created-mission-service
           image: kangwoobin/created-mission-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8083
           envFrom:
             - configMapRef:
                 name: app-config
@@ -32,7 +32,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8083
+      targetPort: 8083
   selector:
     app: created-mission-service

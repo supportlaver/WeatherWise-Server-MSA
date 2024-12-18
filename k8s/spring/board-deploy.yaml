@@ -18,7 +18,7 @@ spec:
         - name: board-service
           image: kangwoobin/board-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8084
           envFrom:
             - configMapRef:
                 name: app-config
@@ -32,7 +32,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8084
+      targetPort: 8084
   selector:
     app: board-service

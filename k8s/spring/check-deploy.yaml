@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mission-service
+  name: check-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mission-service
+      app: check-service
   template:
     metadata:
       labels:
-        app: mission-service
+        app: check-service
     spec:
       nodeSelector:
         node-role: backend
       containers:
-        - name: mission-service
-          image: kangwoobin/mission-service:latest
+        - name: check-service
+          image: kangwoobin/check-service:latest
           ports:
-            - containerPort: 8082
+            - containerPort: 8086
           envFrom:
             - configMapRef:
                 name: app-config
@@ -28,11 +28,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mission-service
+  name: check-service
 spec:
   type: ClusterIP
   ports:
-    - port: 8082
-      targetPort: 8082
+    - port: 8086
+      targetPort: 8086
   selector:
-    app: mission-service
+    app: check-service

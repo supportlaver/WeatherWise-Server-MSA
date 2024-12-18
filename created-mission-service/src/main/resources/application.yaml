@@ -8,7 +8,7 @@ spring:
           required-acks: ${KAFKA_REQUIRED_ACK_MODE}
       bindings:
         result-out-0:
-          destination: ${KAFKA_RESULT_TOPIC}
+          destination: ${KAFKA_CREATED_MISSION_RESULT_TOPIC}
           contentType: application/json  # JSON 형식으로 처리
         check-in-0:
           destination: ${KAFKA_CHECK_TOPIC}

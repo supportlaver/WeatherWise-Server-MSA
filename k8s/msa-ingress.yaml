@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weatherwise-msa-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/load-balancer-name: weatherwise-msa-alb
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:602844129879:certificate/ea33ebea-3970-44e9-8e77-4fe07714f3c6
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+spec:
+  ingressClassName: alb
+  rules:
+    - host: weather-wise.shop  # 도메인 설정
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vite-nginx-service
+                port:
+                  number: 80
+          - path: /api   # 모든 API 요청은 /api 경로를 통해 Gateway로 전달
+            pathType: Prefix
+            backend:
+              service:
+                name: authorization-service  # API Gateway 서비스 이름
+                port:
+                  number: 8000
+    - host: www.weather-wise.shop  # 도메인 설정
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vite-nginx-service
+                port:
+                  number: 80
+          - path: /api   # 모든 API 요청은 /api 경로를 통해 Gateway로 전달
+            pathType: Prefix
+            backend:
+              service:
+                name: authorization-service  # API Gateway 서비스 이름
+                port:
+                  number: 8000
+  tls:
+    - hosts:
+        - weather-wise.shop
+        - www.weather-wise.shop

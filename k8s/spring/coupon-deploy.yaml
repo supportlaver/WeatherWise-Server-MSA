@@ -18,7 +18,7 @@ spec:
         - name: coupon-service
           image: kangwoobin/coupon-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8085
           envFrom:
             - configMapRef:
                 name: app-config
@@ -32,7 +32,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8085
+      targetPort: 8085
   selector:
     app: coupon-service

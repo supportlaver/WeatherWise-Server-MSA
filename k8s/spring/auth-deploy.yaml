@@ -18,7 +18,7 @@ spec:
         - name: auth-service
           image: kangwoobin/auth-service:latest  # auth-service 전용 이미지
           ports:
-            - containerPort: 8080
+            - containerPort: 8086
           envFrom:
             - configMapRef:
                 name: app-config
@@ -32,7 +32,7 @@ metadata:
 spec:
   type: ClusterIP  # 내부 통신을 위해 ClusterIP 사용
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8086
+      targetPort: 8086
   selector:
     app: auth-service

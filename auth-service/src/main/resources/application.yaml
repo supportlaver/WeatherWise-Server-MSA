@@ -59,5 +59,8 @@ logging:
   level:
     org.springframework.cloud.gateway: DEBUG
 
+server:
+  port: 8086
+
 jwt:
   secret-key: ${JWT_SECRET_KEY}  # 환경 변수로 치환
