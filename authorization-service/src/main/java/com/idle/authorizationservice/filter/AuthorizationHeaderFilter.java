@@ -54,7 +54,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             log.info("request URL = {} " , request.getURI());
             String path = request.getPath().toString();
             // 특정 경로를 필터에서 건너뛰기
-            if (path.equals("/api/users/signup") || path.equals("/api/signup")) {
+            if (path.equals("/api/users/signup") || path.equals("/api/signup") || path.equals("/api/v1/sign-in")) {
                 log.info("건너뛰기");
                 return chain.filter(exchange);
             }

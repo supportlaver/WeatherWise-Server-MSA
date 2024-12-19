@@ -7,6 +7,7 @@ import com.idle.createdmissionservice.application.dto.request.CreateMission;
 import com.idle.createdmissionservice.application.dto.response.CreatedMissionsView;
 import com.idle.createdmissionservice.application.dto.response.MissionAuthenticateView;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/created-missions")
+@Slf4j
 public class CreatedMissionController {
 
     private final CreatedMissionService createdMissionService;
@@ -25,6 +27,7 @@ public class CreatedMissionController {
     // 넘어온 날짜에 생성한 미션들 확인
     @GetMapping
     public ResponseEntity<BaseResponse<List<CreatedMissionsView>>> getCreatedMissions(@UserId Long userId, @RequestParam("date") LocalDate date) {
+        log.info("JIWON");
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.getMissionList(date,userId)));
     }
 

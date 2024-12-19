@@ -21,12 +21,9 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        UserSecurityFormDto userDto = userServiceClient.findUserIdAndRoleBySerialId(username)
-                .orElseThrow(() -> new BaseException(ErrorCode.NOT_FOUND_USER));
-
+        UserSecurityFormDto userDto = userServiceClient.findUserIdAndRoleBySerialId(username);
         // UserSecurityForm 인터페이스로 변환
         UserSecurityForm user = UserSecurityFormDto.toSecurityForm(userDto);
-
         return CustomUserDetails.create(user);
     }
     public UserDetails loadUserById(Long userId) throws BaseException {

@@ -1,6 +1,7 @@
 package com.idle.userservice.infrastructure;
 
 import com.idle.commonservice.auth.EProvider;
+import com.idle.userservice.application.dto.request.UserSecurityForm;
 import com.idle.userservice.domain.User;
 import com.idle.userservice.domain.UserRepository;
 import lombok.Builder;
@@ -16,7 +17,7 @@ public class UserRepositoryImpl implements UserRepository {
     private final UserJpaRepository userJpaRepository;
 
     @Override
-    public Optional<User> findUserIdAndRoleBySerialId(String serialId) {
+    public Optional<UserSecurityForm> findUserIdAndRoleBySerialId(String serialId) {
         return userJpaRepository.findUserIdAndRoleBySerialId(serialId);
     }
 

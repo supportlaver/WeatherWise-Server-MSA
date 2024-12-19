@@ -46,6 +46,7 @@ public class DefaultSignInSuccessHandler implements AuthenticationSuccessHandler
         // JWT Token 발급
         JwtTokenDto jwtTokenDto = jwtUtil.generateTokens(userPrincipal.getId(), userPrincipal.getRole());
 
+
         // HTTP 요청 (동기)
         userServiceClient.updateRefreshTokenAndLoginStatus(UpdateUserRefreshToken
                 .from(userPrincipal.getId(), jwtTokenDto.getRefreshToken()));
@@ -73,6 +74,8 @@ public class DefaultSignInSuccessHandler implements AuthenticationSuccessHandler
             log.info("웹");
             setSuccessWebResponse(response, jwtTokenDto, res.getNickname(), role);
         }
+
+
     }
 
     private void setSuccessAppResponse(HttpServletResponse response, JwtTokenDto tokenDto) throws IOException {

@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
     @GetMapping
-    public ResponseEntity<UserResponse> findById(@UserId Long userId) {
-        return ResponseEntity.ok().body(userService.findById(userId));
+    public UserResponse findById(@UserId Long userId) {
+        return userService.findById(userId);
     }
 
     @GetMapping("/no-token/{user-id}")

@@ -1,3 +1,7 @@
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
 spring:
   cloud:
     gateway:
@@ -44,11 +48,7 @@ spring:
           - id: auth-service
             uri: http://localhost:8087
             predicates:
-              - Path=/api/signup
-              - Path=/api/users/signup
-              - Path=/api/v1/sign-in
-              - Path=/api/v1/logout
-              - Path=/oauth2/authorization/kakao
+              - Path=/api/signup,/api/users/signup,/api/v1/sign-in,/api/v1/logout,/oauth2/authorization/kakao
 
 
 

@@ -1,6 +1,7 @@
 package com.idle.userservice.infrastructure;
 
 import com.idle.commonservice.auth.EProvider;
+import com.idle.userservice.application.dto.request.UserSecurityForm;
 import com.idle.userservice.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,8 +12,8 @@ import java.util.Optional;
 
 public interface UserJpaRepository extends JpaRepository<User , Long> {
     @Query(value = "SELECT u.id as id, u.password as password, u.role as role" +
-            " FROM User u WHERE u.serialId = :serialId")
-    Optional<User> findUserIdAndRoleBySerialId(@Param("serialId") String serialId);
+            " FROM User u WHERE u.serialId = :userId")
+    Optional<UserSecurityForm> findUserIdAndRoleBySerialId(@Param("userId") String userId);
 
     Optional<User> findByIdAndIsLoginAndRefreshTokenIsNotNull(Long id, boolean b);
     @Modifying(clearAutomatically = true)

@@ -40,7 +40,7 @@ public interface UserServiceClient {
     UserSecurityFormDto createUser(@RequestBody UserRequest userRequest);
 
     @GetMapping("/user-auth/user-id-role")
-    Optional<UserSecurityFormDto> findUserIdAndRoleBySerialId(@RequestParam("serial-id") String serialId);
+    UserSecurityFormDto findUserIdAndRoleBySerialId(@RequestParam("serial-id") String serialId);
 
     @GetMapping("/user-auth/login-refresh-token")
     Optional<UserSecurityFormDto> findByIdAndIsLoginAndRefreshTokenIsNotNull(@RequestParam("user-id") Long id ,
