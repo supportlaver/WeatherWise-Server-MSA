@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @Builder
 public class AuthSignUpRequest {
     private String loginId;
-    private String nickName;
+    private String nickname;
     private String password;
 
     public void encryptionPassword(String encryptionPassword) {

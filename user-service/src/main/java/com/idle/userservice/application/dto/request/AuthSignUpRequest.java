@@ -1,11 +1,8 @@
 package com.idle.userservice.application.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter @NoArgsConstructor
+@Getter @NoArgsConstructor @Setter
 @AllArgsConstructor @Builder
 public class AuthSignUpRequest {
     private String loginId;

@@ -46,7 +46,6 @@ public interface UserServiceClient {
     Optional<UserSecurityFormDto> findByIdAndIsLoginAndRefreshTokenIsNotNull(@RequestParam("user-id") Long id ,
                                                                           @RequestParam("refresh-token-null") boolean b);
 
-
     @PostMapping("/users/sign-up")
     AuthSignUpResponse signUp(@RequestBody AuthSignUpRequest req);
 }

@@ -42,9 +42,9 @@ public class UserController {
     }
 
     // 자체 회원 가입
-    // 자체 회원가입 되면 회원가입을 기준으로 하기!!!
-    @PostMapping(path = "/sign-up", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public AuthSignUpResponse signUp(@RequestBody AuthSignUpRequest req) {
+        log.info("req = {} " , req.getLoginId());
         return userService.signUp(req);
     }
 
