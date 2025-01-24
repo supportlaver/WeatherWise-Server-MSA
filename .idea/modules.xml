@@ -11,7 +11,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/created-mission-service/WeatherWise-Server-MSA.created-mission-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/created-mission-service/WeatherWise-Server-MSA.created-mission-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mission-service/WeatherWise-Server-MSA.mission-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mission-service/WeatherWise-Server-MSA.mission-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service/WeatherWise-Server-MSA.user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service/WeatherWise-Server-MSA.user-service.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/chatting-service.iml" filepath="$PROJECT_DIR$/chatting-service.iml" />
     </modules>
   </component>
 </project>
