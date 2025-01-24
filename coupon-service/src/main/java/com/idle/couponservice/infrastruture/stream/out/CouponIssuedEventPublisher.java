@@ -31,7 +31,7 @@ public class CouponIssuedEventPublisher {
         return () -> checkSink.asFlux()
                 .doOnError(error -> {
                     // 에러 처리 로직
-                    System.err.println("Error in couponEventSupplier: " + error.getMessage());
+                    log.error("Error in couponEventSupplier {} " , error.getMessage());
                 });
     }
 
@@ -41,15 +41,11 @@ public class CouponIssuedEventPublisher {
         return () -> issuedSink.asFlux()
                 .doOnError(error -> {
                     // 에러 처리 로직
-                    System.err.println("Error in couponEventSupplier: " + error.getMessage());
+                    log.error("Error in couponEventSupplier {} " , error.getMessage());
                 });
     }
 
     public void publishToCheckTopic(UserConditionCheckEvent event) {
         checkSink.tryEmitNext(event);
-    }
-
-    public void publishToIssuedTopic(CouponIssuedEvent event) {
-        issuedSinkV0.tryEmitNext(event);
     }
 }

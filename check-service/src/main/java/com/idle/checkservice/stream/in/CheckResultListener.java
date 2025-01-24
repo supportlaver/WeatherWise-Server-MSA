@@ -59,12 +59,6 @@ public class CheckResultListener {
     }
 
     /**
-     * 어쩔 수 없이 그냥 ㄱㄱ
-     * HTTP 랑 EVENT 대충 비교 해보고
-     * 모니터링 강의 듣다가 가기
-     */
-
-    /**
      * DailyMissionVerifiedResultEvent 처리 메서드
      */
     private void handleDailyMissionVerifiedResult(DailyMissionVerifiedResultEvent event) {

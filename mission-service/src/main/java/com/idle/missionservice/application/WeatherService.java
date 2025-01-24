@@ -13,14 +13,8 @@ import org.springframework.stereotype.Service;
 public class WeatherService {
     private final AIWeatherInfoProvider weatherProvider;
     public WeatherInfo getCurrentWeatherInfo(double latitude , double longitude) {
-        // 날씨 정보 가져오기
         WeatherData res = weatherProvider.getCurrentWeatherInfo(latitude, longitude);
-        // application 계층 DTO 로 변환
         return WeatherInfo.from(res);
     }
 
-    public void getPersonalizedWeatherInfo(double latitude , double longitude,Long userId) {
-        // 날씨 정보 가져오기
-        weatherProvider.getPersonalizedWeatherInfo(latitude,longitude,userId);
-    }
 }

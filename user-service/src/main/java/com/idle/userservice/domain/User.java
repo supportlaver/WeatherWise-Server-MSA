@@ -115,9 +115,4 @@ public class User extends BaseEntity {
     public void issuedCoupon(UserCoupon coupon) {
         this.coupons.add(coupon);
     }
-
-    // UserCoupon 삭제
-    public void removeCoupon(UserCoupon coupon) {
-        this.coupons.remove(coupon);
-    }
 }

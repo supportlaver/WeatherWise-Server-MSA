@@ -24,12 +24,9 @@ public class S3FileStorageService implements FileStorageService {
     private final String s3DomainName;
     @Override
     public FileUpload uploadFile(MultipartFile imageFile) {
-        //파일의 원본 이름
         String originalFileName = imageFile.getOriginalFilename();
-        //DB에 저장될 파일 이름
         String storeFileName = createStoreFileName(originalFileName);
 
-        //S3에 저장
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentType(imageFile.getContentType());
         metadata.setContentLength(imageFile.getSize());
@@ -38,7 +35,6 @@ public class S3FileStorageService implements FileStorageService {
         } catch (IOException e) {
             throw new BaseException(ErrorCode.SERVER_ERROR);
         }
-        // 업로드된 파일의 URL 가져오기
         String uploadFileUrl = amazonS3Client.getUrl(s3Bucket, storeFileName).toString();
         return FileUpload.of(originalFileName , s3DomainName + storeFileName , uploadFileUrl);
     }

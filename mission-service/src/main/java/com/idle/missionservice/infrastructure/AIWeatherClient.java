@@ -56,8 +56,4 @@ public class AIWeatherClient implements AIWeatherInfoProvider {
         );
     }
 
-    @Override
-    public void getPersonalizedWeatherInfo(double latitude, double longitude , Long userId) {
-
-    }
 }

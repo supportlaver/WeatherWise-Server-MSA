@@ -22,19 +22,9 @@ public class WeatherInfoController {
 
     private final WeatherService weatherService;
 
-    /**
-     * 한 API 에서 멀티 스레드를 써서 가지고 오는게 더 빠를까 ?
-     * 다른 API 로 구현해서 가지고 오는게 더 빠를까?
-     * 테스트 해보기
-     */
     @GetMapping
     public ResponseEntity<BaseResponse<WeatherInfo>> getWeatherInfo(@RequestParam("latitude") double latitude,
                                                                     @RequestParam("longitude") double longitude){
         return ResponseEntity.ok().body(new BaseResponse<>(weatherService.getCurrentWeatherInfo(latitude,longitude)));
-    }
-
-    @GetMapping("/personalized-weather")
-    public void getPersonalizedWeatherInfo(double latitude , double longitude,Long userId)  {
-        weatherService.getPersonalizedWeatherInfo(latitude,longitude,userId);
     }
 }

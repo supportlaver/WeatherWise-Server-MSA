@@ -36,15 +36,10 @@ public class CreatedMissionService {
     private final MissionAuthenticationService missionAuthenticationService;
 
 
-    public void createMission(Long userId , CreateMission req) {
-        // TODO: 11/29/24 미션을 어떻게 만들어줄것인가?
-        createMissionProvider.createMission(req.getLatitude() , req.getLongitude());
-    }
 
     @Transactional
     public MissionAuthenticateView authMission(Long userId, Long createdMissionId, MultipartFile imageFile) {
 
-        // createdMission  +  BasedMission 정보 가져오기
         CreatedMission createdMission = createdMissionRepository.findById(createdMissionId);
         Long missionId = createdMission.getBasedMission().getMissionId();
         MissionResponse mission = missionClient.findById(missionId);
@@ -52,15 +47,12 @@ public class CreatedMissionService {
         boolean authResult = missionAuthenticationService.authenticateMission(createdMission, mission, imageFile);
 
         if (!authResult) {
-            // 인증 실패 시 도메인 엔티티의 메서드 호출
             createdMission.failAuthentication();
             return MissionAuthenticateView.fail();
         }
 
-        // 인증 성공 시
         createdMission.successAuthentication();
 
-        // 사용자 경험치 추가
         UserAcquisitionExpResponse res = userClient.acquisitionExp(AcquisitionExp.of(userId, mission.getExp()));
 
         return MissionAuthenticateView.success(true, mission.getExp(), res.getUserLevel(), res.getExp());
@@ -68,25 +60,19 @@ public class CreatedMissionService {
 
 
     public List<CreatedMissionsView> getMissionList(LocalDate date , Long userId) {
-        // user 정보 가져오기
         UserResponse res = userClient.findById(userId);
 
-        // application DTO 로 변환
         UserData user = UserData.of(res.getId(), res.getNickname());
 
-        // Repository 에서 DATA 가져오기
         List<CreatedMission> createdMissions = createdMissionRepository.findCreatedMissionByDate(user.getId(), date);
         List<Long> missionIds = createdMissions.stream().map(cm -> cm.getBasedMission().getMissionId()).toList();
 
-        // mission 정보 가져오기
         List<MissionResponse> missionsRes = missionClient.getMissionsInfo(missionIds);
 
 
-        // key : MissionId , Value : MissionRes
         Map<Long, MissionResponse> missionMap = missionsRes.stream()
                 .collect(Collectors.toMap(MissionResponse::getMissionId, Function.identity()));
 
-        // CreatedMission 과 Mission 의 정보를 합쳐서 반환
         return createdMissions.stream()
                 .map(cm -> {
                     MissionResponse mission = missionMap.get(cm.getBasedMission().getMissionId());
@@ -101,10 +87,8 @@ public class CreatedMissionService {
 
         MissionResponse mission = missionClient.findById(createdMission.getBasedMission().getMissionId());
 
-        // user 정보 가져오기
         UserResponse res = userClient.findById(createdMission.getChallenger().getUserId());
 
-        // application DTO 로 변환
         UserData user = UserData.of(res.getId(), res.getNickname());
 
         return CreatedMissionsView.of(createdMission , mission , user);

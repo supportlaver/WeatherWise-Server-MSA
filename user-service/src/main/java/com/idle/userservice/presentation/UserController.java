@@ -29,22 +29,18 @@ public class UserController {
 
     @GetMapping("/no-token/{user-id}")
     public ResponseEntity<UserResponse> findByIdNoToken(@PathVariable("user-id") Long userId) {
-        log.info("findById");
         return ResponseEntity.ok().body(userService.findById(userId));
     }
 
     @PostMapping
     public ResponseEntity<UserSecurityFormDto> createUser(@RequestBody UserRequest req) {
-        log.info("req = {} " ,req);
         UserSecurityFormDto res = userService.createUser(req);
-        log.info("3");
         return ResponseEntity.ok().body(res);
     }
 
     // 자체 회원 가입
     @PostMapping(path = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public AuthSignUpResponse signUp(@RequestBody AuthSignUpRequest req) {
-        log.info("req = {} " , req.getLoginId());
         return userService.signUp(req);
     }
 
@@ -53,11 +49,4 @@ public class UserController {
     public UserAcquisitionExpResponse acquisitionExp(@RequestBody AcquisitionExp req) {
         return userService.acquisitionExp(req.getUserId() , req.getExp());
     }
-
-    @GetMapping("/test1")
-    public String test1(@UserId Long userId) {
-        log.info("userId = {} " , userId);
-        return "success1";
-    }
-
 }

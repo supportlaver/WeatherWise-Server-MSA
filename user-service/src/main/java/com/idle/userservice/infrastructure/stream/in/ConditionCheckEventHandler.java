@@ -26,12 +26,7 @@ public class ConditionCheckEventHandler {
     @Bean
     public Consumer<UserConditionCheckEvent> check() {
         return message -> {
-            // Processing the PaymentEventMessage
-            // message 로 Validation 하고 streamBridge 를 통해 result 토픽에 send
-
             boolean result = userCheck(message);
-
-            // Sending the processed LedgerEventMessage to the "ledger" destination
             streamBridge.send("user-result", new UserCheckResultEvent(message.getUserId(),message.getCouponId(),
                     message.getCorrelationId(), result));
         };

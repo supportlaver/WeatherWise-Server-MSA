@@ -55,6 +55,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Zipkin
+    implementation 'io.micrometer:micrometer-tracing'
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 }
 
 ext {

@@ -32,32 +32,20 @@ public class UserService {
 
     @Transactional
     public UserSecurityFormDto createUser(UserRequest req) {
-        log.info("1");
         User user = userRepository.save(User.signUpSocialLogin(req.getSerialId() , req.getPassword() ,
                                                 req.getProvider() , req.getRole() , req.getNickname()));
-        log.info("2");
         return new UserSecurityFormDto(user.getId(), user.getPassword().getValue(), user.getRole());
     }
 
-    // 트랜잭션은 application 레이어에서 관리
-    // Entity (도메인) 에 관련된 기능들은 Entity 안에다가..
-    // 닉네임 중복 체크가 다른 도메인에서 재사용성이 있는가?
-    // Validation , Method 재사용성이 있는가?
-    // Yes : Entity 에 넣는 것을 고려
-
     @Transactional
     public AuthSignUpResponse signUp(AuthSignUpRequest req) {
-        // 닉네임 중복 체크
         userRepository.findByNicknameAndIsDeleted(req.getNickName(), false)
                 .ifPresent(u -> {
                     throw new BaseException(ErrorCode.DUPLICATION_NICKNAME);
                 });
 
-        // User 생성
         User user = userRepository.save(User.signUpSocialLogin(req.getLoginId(),req.getPassword(),
                 EProvider.DEFAULT, ERole.USER, req.getNickName()));
-
-        log.info("user Level = {} " , user.getLevel().getValue());
 
         return AuthSignUpResponse.of(user.getId() , user.getRole() ,
                 user.getProvider() , user.getSerialId() , user.getNickname() , user.getCreatedAt());
@@ -66,8 +54,6 @@ public class UserService {
     @Transactional
     public UserAcquisitionExpResponse acquisitionExp(Long userId , int exp) {
         User user = userRepository.findById(userId).orElseThrow(() -> new BaseException(ErrorCode.NOT_FOUND_USER));
-
-        // 경험치 획득 로직
         user.acquisitionExp(exp);
         return UserAcquisitionExpResponse.of(user.getId() , user.getLevel().getValue() ,
                 user.getExp().getValue() , user.getNickname());
