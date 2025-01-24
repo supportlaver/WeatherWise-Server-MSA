@@ -9,5 +9,4 @@ include 'common-service'
 include 'authorization-service'
 include 'coupon-service'
 include 'check-service'
-include 'chatting-consume-service'
 
