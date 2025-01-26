@@ -15,10 +15,7 @@ public class AuthService {
     private final UserServiceClient userClient;
     private final PasswordEncoder passwordEncoder;
     public AuthSignUpResponse signUp(AuthSignUpRequest req) {
-        // 암호화
         req.encryptionPassword(passwordEncoder.encode(req.getPassword()));
-        // 전송
-        log.info("userClient 전송");
         return userClient.signUp(req);
     }
 }

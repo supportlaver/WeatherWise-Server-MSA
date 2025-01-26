@@ -1,9 +1,11 @@
 package com.idle.checkservice.event;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data @ToString
+@NoArgsConstructor
 public class AggregatedResult {
     private Long userId;
     private Long couponId;
@@ -11,10 +13,6 @@ public class AggregatedResult {
     private boolean userCheckResult;
     private boolean dailyMissionVerifiedResult;
 
-    // Constructors, Getters, Setters
-    public AggregatedResult(Long userId) {
-        this.userId = userId;
-    }
 
     public AggregatedResult(String correlationId, Long userId , Long couponId) {
         this.correlationId = correlationId;

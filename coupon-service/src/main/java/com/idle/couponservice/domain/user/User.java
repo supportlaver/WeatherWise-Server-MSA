@@ -77,7 +77,7 @@ public class User extends BaseEntity {
     /**
      * 회원가입용 (소셜)
      */
-    public static User signUpSocialLogin(String serialId , String password , EProvider provider , ERole role , String nicName) {
+    public static User signUpSocialLogin(String serialId, String password, EProvider provider, ERole role, String nicName) {
         return User.builder()
                 .serialId(serialId)
                 .password(Password.from(password))
@@ -103,6 +103,7 @@ public class User extends BaseEntity {
     private boolean isLevelUp(int totalExp) {
         return totalExp > 100;
     }
+
     private void levelUp(int totalExp) {
         this.level = this.level.levelUp();
         this.exp = this.exp.calculateExp(totalExp);
@@ -110,15 +111,5 @@ public class User extends BaseEntity {
 
     private void updateExp(int totalExp) {
         this.exp = Exp.from(totalExp);
-    }
-
-    // UserCoupon 추가
-    public void issuedCoupon(UserCoupon coupon) {
-        this.coupons.add(coupon);
-    }
-
-    // UserCoupon 삭제
-    public void removeCoupon(UserCoupon coupon) {
-        this.coupons.remove(coupon);
     }
 }

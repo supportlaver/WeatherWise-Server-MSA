@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor @NoArgsConstructor
 public class UserCouponDateInfo {
     @Column(name = "userd_at")
-    private LocalDateTime usedAt; // 사용 날짜
+    private LocalDateTime usedAt;
 
     @Column(name = "acquired_at")
-    private LocalDateTime acquiredAt; // 획득 날짜
+    private LocalDateTime acquiredAt;
 
     public static UserCouponDateInfo issuedCoupon() {
         return UserCouponDateInfo.builder()

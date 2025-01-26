@@ -6,8 +6,6 @@ import com.idle.userservice.application.dto.request.UserSecurityForm;
 import java.util.Optional;
 
 public interface UserRepository {
-
-    // Optional<User> findUserIdAndRoleBySerialId(String serialId);
     Optional<UserSecurityForm> findUserIdAndRoleBySerialId(String serialId);
 
     Optional<User> findByIdAndIsLoginAndRefreshTokenIsNotNull(Long id, boolean b);

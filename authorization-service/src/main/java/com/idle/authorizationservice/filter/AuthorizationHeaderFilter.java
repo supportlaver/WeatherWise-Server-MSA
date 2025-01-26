@@ -53,7 +53,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
             log.info("request URL = {} " , request.getURI());
             String path = request.getPath().toString();
-            // 특정 경로를 필터에서 건너뛰기
+
             if (path.equals("/api/users/signup") || path.equals("/api/signup") || path.equals("/api/v1/sign-in")) {
                 log.info("건너뛰기");
                 return chain.filter(exchange);
@@ -63,11 +63,11 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
                 return onError(exchange, "No authorization header", HttpStatus.UNAUTHORIZED);
             }
 
-            // Authorization 헤더에서 JWT 추출
+
             String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
             String jwt = authorizationHeader.replace("Bearer", "").trim();
 
-            // JWT에서 사용자 정보 추출
+
             JwtUserInfo userInfo = getUserInfoFromJwt(jwt);
             if (userInfo == null) {
                 return onError(exchange, "JWT Token is not valid", HttpStatus.UNAUTHORIZED);
@@ -75,42 +75,16 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
             // USER_ID 헤더 추가
             ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
-                    .header("USER_ID", String.valueOf(userInfo.id())) // 사용자 ID 추가
+                    .header("USER_ID", String.valueOf(userInfo.id()))
                     .build();
 
-            // 교체된 요청으로 필터 체인 실행
             exchange.getRequest().mutate().header("X-Gateway-Header", String.valueOf(userInfo.id()));
-/*
-            ServerWebExchange modifiedExchange = exchange.mutate()
-                    .request(modifiedRequest)
-                    .build();
-
-            log.info("Adding USER_ID to headers: {}", userInfo.id());
-            log.info("Modified Request Headers: {}", modifiedRequest.getHeaders());
-*/
 
             return chain.filter(exchange);
         };
     }
-    private boolean isJwtValid(String jwt) {
-        boolean returnValue = true;
-        System.out.println("jwt = " + jwt);
-        // jwt.io 에서 token 으로 subject 를 알 수 있다.
-        String subject = null;
-        final JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(key).build();
-        System.out.println(3);
-        // Subject 를 추출했고, 올바른 값인지 확인하면 된다.
-        // subject = jwtParser.parseClaimsJws(jwt).getBody().getSubject();
-        Claims claims = jwtParser.parseClaimsJws(jwt).getBody();
-        JwtUserInfo userInfo = new JwtUserInfo(
-                Long.valueOf(claims.get(Constants.USER_ID_CLAIM_NAME, String.class)),
-                ERole.valueOf(claims.get(Constants.USER_ROLE_CLAIM_NAME, String.class))
-        );
-        return returnValue;
-    }
 
-    // Mono(단일값) , Flux(다중값) -> Spring WebFlux 에서 나오는 개념
-    // API 처리할 때 비동기 방식으로 처리
+
     private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(httpStatus);
@@ -135,7 +109,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             );
         } catch (Exception e) {
             e.printStackTrace();
-            return null; // JWT 검증 실패 시 null 반환
+            return null;
         }
     }
 }

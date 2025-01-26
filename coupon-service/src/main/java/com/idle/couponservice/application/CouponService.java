@@ -24,19 +24,11 @@ public class CouponService {
     private final CouponIssuedEventPublisher eventPublisher;
 
 
-    public void getCouponList(Long userId) {
-
-    }
-
-
     @Transactional
     public void receiveCoupon(Long userId, Long couponId) {
-        // 1. Coupon 의 수량이 남았는가?
-        // Coupon coupon = couponRepository.findById(couponId);
         Coupon coupon = couponRepository.findByIdForLock(couponId);
         coupon.issue();
 
-        // 쿠폰 발급 조건 확인을 Event 로 발행
         String correlationId = UUID.randomUUID().toString();
         UserConditionCheckEvent userConditionCheckEvent =
                 new UserConditionCheckEvent(correlationId , userId , couponId , LocalDateTime.now());

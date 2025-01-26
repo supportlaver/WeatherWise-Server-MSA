@@ -37,11 +37,6 @@ public class CreatedMissionController {
         return ResponseEntity.ok().body(new BaseResponse<>(createdMissionService.getMission(createdMissionId)));
     }
 
-    // 미션 생성
-    @PostMapping
-    public void createMission(@UserId Long userId, @RequestBody CreateMission createMission) {
-        // TODO: 11/29/24 미션 만들어지는 정책 정해지면 시작
-    }
 
     // 미션 인증
     @PostMapping("/{created-mission-id}")

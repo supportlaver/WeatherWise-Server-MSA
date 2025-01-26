@@ -32,7 +32,6 @@ public class UserAuthService {
     public UserSecurityFormDto findUserIdAndRoleBySerialId(String serialId) {
         UserSecurityForm user = userRepository.findUserIdAndRoleBySerialId(serialId)
                 .orElseThrow(() -> new BaseException(ErrorCode.NOT_FOUND_USER));
-        log.info("JIWON");
         return new UserSecurityFormDto(user.getId() , user.getPassword() , user.getRole());
     }
 

@@ -19,7 +19,6 @@ public class MissionService {
     private final MissionRepository missionRepository;
 
     public List<MissionResponse> getMissionsInfo(List<Long> missionIds) {
-        // Repository 에서 미션 가져오기
         List<Mission> missions = missionIds.stream().map(missionRepository::findById).toList();
 
         return missions.stream().map(MissionResponse::from).collect(toList());
