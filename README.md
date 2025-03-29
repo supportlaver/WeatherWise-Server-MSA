@@ -136,6 +136,14 @@ Kafka를 활용한 비동기 메시지 처리는:
 ### 아키텍처별 성능 비교
 <img width="852" alt="아키텍처별 성능 비교" src="https://github.com/user-attachments/assets/9770abf6-405f-4954-accc-b909fc009bcf" />
 
+### 📽️ MSA 전환 후 영상
+
+https://github.com/user-attachments/assets/4a739fd0-559c-4317-a512-49795c7f32ea
+
+- 같은 부하테스트 스크립트를 실행했지만 서비스를 모두 나눴기 때문에 다른 기능들은 정상적으로 되는 것을 확인했습니다.
+
+---
+
 ### 3️⃣ 채팅 성능 개선 - <ins>최대 트래픽 처리량 약 4배 증가</ins>
 
 </br>
